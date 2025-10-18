@@ -68,7 +68,7 @@
 
 ## Tasks
 
-- [ ] 1.0 Project Setup and PWA Foundation
+- [x] 1.0 Project Setup and PWA Foundation
   - [x] 1.1 Create React + Vite project with `npm create vite@latest thai-script-app --template react`
   - [x] 1.2 Install core dependencies: Capacitor, Tailwind CSS, Headless UI, Heroicons, Framer Motion
   - [x] 1.3 Install specialized dependencies: Zustand, Howler.js, Konva, React-Konva
@@ -80,12 +80,12 @@
   - [x] 1.9 Set up GitHub repository and configure GitHub Pages deployment
 
 - [ ] 2.0 Thai Character Overview Page (Priority)
-  - [ ] 2.1 Research and compile Thai character data (44 consonants, 32 vowels, tone marks)
-  - [ ] 2.2 Create thai-characters.json with character metadata (Unicode, pronunciation, stroke count)
-  - [ ] 2.3 Design logical Thai character grouping (consonants by class, vowels by type)
-  - [ ] 2.4 Create ThaiCharacterGrid React component with Tailwind grid layout
-  - [ ] 2.5 Implement character cards with Thai symbol, pronunciation, and visual indicators
-  - [ ] 2.6 Add navigation tabs for different character groups (Consonants, Vowels, Tone Marks)
+  - [x] 2.1 Research and compile Thai character data (44 consonants, 32 vowels, tone marks)
+  - [x] 2.2 Create thai-characters.json with character metadata (Unicode, pronunciation, stroke count)
+  - [x] 2.3 Design logical Thai character grouping (consonants by class, vowels by type)
+  - [x] 2.4 Create ThaiCharacterGrid React component with Tailwind grid layout
+  - [x] 2.5 Implement character cards with Thai symbol, pronunciation, and visual indicators
+  - [x] 2.6 Add navigation tabs for different character groups (Consonants, Vowels, Tone Marks)
   - [ ] 2.7 Create character selection functionality for individual learning
   - [ ] 2.8 Add audio pronunciation for each character using Howler.js
   - [ ] 2.9 Implement responsive grid layout optimized for mobile viewing

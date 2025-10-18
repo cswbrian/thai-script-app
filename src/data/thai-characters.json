@@ -1,0 +1,839 @@
+{
+  "consonants": [
+    {
+      "id": "ก",
+      "unicode": "U+0E01",
+      "name": "ko kai",
+      "pronunciation": "k",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "chicken",
+      "audioPath": "/audio/consonants/ก.mp3"
+    },
+    {
+      "id": "ข",
+      "unicode": "U+0E02",
+      "name": "kho khai",
+      "pronunciation": "kh",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "egg",
+      "audioPath": "/audio/consonants/ข.mp3"
+    },
+    {
+      "id": "ฃ",
+      "unicode": "U+0E03",
+      "name": "kho khuat",
+      "pronunciation": "kh",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "bottle",
+      "audioPath": "/audio/consonants/ฃ.mp3"
+    },
+    {
+      "id": "ค",
+      "unicode": "U+0E04",
+      "name": "kho khwai",
+      "pronunciation": "kh",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "buffalo",
+      "audioPath": "/audio/consonants/ค.mp3"
+    },
+    {
+      "id": "ฅ",
+      "unicode": "U+0E05",
+      "name": "kho khon",
+      "pronunciation": "kh",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "person",
+      "audioPath": "/audio/consonants/ฅ.mp3"
+    },
+    {
+      "id": "ฆ",
+      "unicode": "U+0E06",
+      "name": "kho rakhang",
+      "pronunciation": "kh",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "bell",
+      "audioPath": "/audio/consonants/ฆ.mp3"
+    },
+    {
+      "id": "ง",
+      "unicode": "U+0E07",
+      "name": "ngo ngu",
+      "pronunciation": "ng",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "snake",
+      "audioPath": "/audio/consonants/ง.mp3"
+    },
+    {
+      "id": "จ",
+      "unicode": "U+0E08",
+      "name": "cho chan",
+      "pronunciation": "ch",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "plate",
+      "audioPath": "/audio/consonants/จ.mp3"
+    },
+    {
+      "id": "ฉ",
+      "unicode": "U+0E09",
+      "name": "cho ching",
+      "pronunciation": "ch",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "cymbal",
+      "audioPath": "/audio/consonants/ฉ.mp3"
+    },
+    {
+      "id": "ช",
+      "unicode": "U+0E0A",
+      "name": "cho chang",
+      "pronunciation": "ch",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "elephant",
+      "audioPath": "/audio/consonants/ช.mp3"
+    },
+    {
+      "id": "ซ",
+      "unicode": "U+0E0B",
+      "name": "so so",
+      "pronunciation": "s",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "chain",
+      "audioPath": "/audio/consonants/ซ.mp3"
+    },
+    {
+      "id": "ฌ",
+      "unicode": "U+0E0C",
+      "name": "cho choe",
+      "pronunciation": "ch",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "tree",
+      "audioPath": "/audio/consonants/ฌ.mp3"
+    },
+    {
+      "id": "ญ",
+      "unicode": "U+0E0D",
+      "name": "yo ying",
+      "pronunciation": "y",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "woman",
+      "audioPath": "/audio/consonants/ญ.mp3"
+    },
+    {
+      "id": "ฎ",
+      "unicode": "U+0E0E",
+      "name": "do chada",
+      "pronunciation": "d",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "crown",
+      "audioPath": "/audio/consonants/ฎ.mp3"
+    },
+    {
+      "id": "ฏ",
+      "unicode": "U+0E0F",
+      "name": "to patak",
+      "pronunciation": "t",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "goad",
+      "audioPath": "/audio/consonants/ฏ.mp3"
+    },
+    {
+      "id": "ฐ",
+      "unicode": "U+0E10",
+      "name": "tho than",
+      "pronunciation": "th",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "base",
+      "audioPath": "/audio/consonants/ฐ.mp3"
+    },
+    {
+      "id": "ฑ",
+      "unicode": "U+0E11",
+      "name": "tho nangmontho",
+      "pronunciation": "th",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "montho",
+      "audioPath": "/audio/consonants/ฑ.mp3"
+    },
+    {
+      "id": "ฒ",
+      "unicode": "U+0E12",
+      "name": "tho phuthao",
+      "pronunciation": "th",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "elder",
+      "audioPath": "/audio/consonants/ฒ.mp3"
+    },
+    {
+      "id": "ณ",
+      "unicode": "U+0E13",
+      "name": "no nen",
+      "pronunciation": "n",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "monk",
+      "audioPath": "/audio/consonants/ณ.mp3"
+    },
+    {
+      "id": "ด",
+      "unicode": "U+0E14",
+      "name": "do dek",
+      "pronunciation": "d",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "child",
+      "audioPath": "/audio/consonants/ด.mp3"
+    },
+    {
+      "id": "ต",
+      "unicode": "U+0E15",
+      "name": "to tao",
+      "pronunciation": "t",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "turtle",
+      "audioPath": "/audio/consonants/ต.mp3"
+    },
+    {
+      "id": "ถ",
+      "unicode": "U+0E16",
+      "name": "tho thung",
+      "pronunciation": "th",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "sack",
+      "audioPath": "/audio/consonants/ถ.mp3"
+    },
+    {
+      "id": "ท",
+      "unicode": "U+0E17",
+      "name": "tho thahan",
+      "pronunciation": "th",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "soldier",
+      "audioPath": "/audio/consonants/ท.mp3"
+    },
+    {
+      "id": "ธ",
+      "unicode": "U+0E18",
+      "name": "tho thong",
+      "pronunciation": "th",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "flag",
+      "audioPath": "/audio/consonants/ธ.mp3"
+    },
+    {
+      "id": "น",
+      "unicode": "U+0E19",
+      "name": "no nu",
+      "pronunciation": "n",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "mouse",
+      "audioPath": "/audio/consonants/น.mp3"
+    },
+    {
+      "id": "บ",
+      "unicode": "U+0E1A",
+      "name": "bo baimai",
+      "pronunciation": "b",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "leaf",
+      "audioPath": "/audio/consonants/บ.mp3"
+    },
+    {
+      "id": "ป",
+      "unicode": "U+0E1B",
+      "name": "po pla",
+      "pronunciation": "p",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "fish",
+      "audioPath": "/audio/consonants/ป.mp3"
+    },
+    {
+      "id": "ผ",
+      "unicode": "U+0E1C",
+      "name": "pho phung",
+      "pronunciation": "ph",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "bee",
+      "audioPath": "/audio/consonants/ผ.mp3"
+    },
+    {
+      "id": "ฝ",
+      "unicode": "U+0E1D",
+      "name": "fo fa",
+      "pronunciation": "f",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "lid",
+      "audioPath": "/audio/consonants/ฝ.mp3"
+    },
+    {
+      "id": "พ",
+      "unicode": "U+0E1E",
+      "name": "pho phan",
+      "pronunciation": "ph",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "pan",
+      "audioPath": "/audio/consonants/พ.mp3"
+    },
+    {
+      "id": "ฟ",
+      "unicode": "U+0E1F",
+      "name": "fo fan",
+      "pronunciation": "f",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "teeth",
+      "audioPath": "/audio/consonants/ฟ.mp3"
+    },
+    {
+      "id": "ภ",
+      "unicode": "U+0E20",
+      "name": "pho samphao",
+      "pronunciation": "ph",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "junk",
+      "audioPath": "/audio/consonants/ภ.mp3"
+    },
+    {
+      "id": "ม",
+      "unicode": "U+0E21",
+      "name": "mo ma",
+      "pronunciation": "m",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "horse",
+      "audioPath": "/audio/consonants/ม.mp3"
+    },
+    {
+      "id": "ย",
+      "unicode": "U+0E22",
+      "name": "yo yak",
+      "pronunciation": "y",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "giant",
+      "audioPath": "/audio/consonants/ย.mp3"
+    },
+    {
+      "id": "ร",
+      "unicode": "U+0E23",
+      "name": "ro rua",
+      "pronunciation": "r",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "boat",
+      "audioPath": "/audio/consonants/ร.mp3"
+    },
+    {
+      "id": "ฤ",
+      "unicode": "U+0E24",
+      "name": "rue",
+      "pronunciation": "rue",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "vowel",
+      "audioPath": "/audio/consonants/ฤ.mp3"
+    },
+    {
+      "id": "ล",
+      "unicode": "U+0E25",
+      "name": "lo ling",
+      "pronunciation": "l",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "monkey",
+      "audioPath": "/audio/consonants/ล.mp3"
+    },
+    {
+      "id": "ฦ",
+      "unicode": "U+0E26",
+      "name": "lue",
+      "pronunciation": "lue",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "vowel",
+      "audioPath": "/audio/consonants/ฦ.mp3"
+    },
+    {
+      "id": "ว",
+      "unicode": "U+0E27",
+      "name": "wo waen",
+      "pronunciation": "w",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "ring",
+      "audioPath": "/audio/consonants/ว.mp3"
+    },
+    {
+      "id": "ศ",
+      "unicode": "U+0E28",
+      "name": "so sala",
+      "pronunciation": "s",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "pavilion",
+      "audioPath": "/audio/consonants/ศ.mp3"
+    },
+    {
+      "id": "ษ",
+      "unicode": "U+0E29",
+      "name": "so ruesi",
+      "pronunciation": "s",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "hermit",
+      "audioPath": "/audio/consonants/ษ.mp3"
+    },
+    {
+      "id": "ส",
+      "unicode": "U+0E2A",
+      "name": "so sua",
+      "pronunciation": "s",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "tiger",
+      "audioPath": "/audio/consonants/ส.mp3"
+    },
+    {
+      "id": "ห",
+      "unicode": "U+0E2B",
+      "name": "ho hip",
+      "pronunciation": "h",
+      "class": "high",
+      "strokeCount": 2,
+      "meaning": "chest",
+      "audioPath": "/audio/consonants/ห.mp3"
+    },
+    {
+      "id": "ฬ",
+      "unicode": "U+0E2C",
+      "name": "lo chula",
+      "pronunciation": "l",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "kite",
+      "audioPath": "/audio/consonants/ฬ.mp3"
+    },
+    {
+      "id": "อ",
+      "unicode": "U+0E2D",
+      "name": "o ang",
+      "pronunciation": "",
+      "class": "mid",
+      "strokeCount": 2,
+      "meaning": "basin",
+      "audioPath": "/audio/consonants/อ.mp3"
+    },
+    {
+      "id": "ฮ",
+      "unicode": "U+0E2E",
+      "name": "ho nokhuk",
+      "pronunciation": "h",
+      "class": "low",
+      "strokeCount": 2,
+      "meaning": "owl",
+      "audioPath": "/audio/consonants/ฮ.mp3"
+    }
+  ],
+  "vowels": [
+    {
+      "id": "ะ",
+      "unicode": "U+0E30",
+      "name": "sara a",
+      "pronunciation": "a",
+      "type": "short",
+      "position": "final",
+      "audioPath": "/audio/vowels/ะ.mp3"
+    },
+    {
+      "id": "ั",
+      "unicode": "U+0E31",
+      "name": "mai han-akat",
+      "pronunciation": "a",
+      "type": "short",
+      "position": "above",
+      "audioPath": "/audio/vowels/ั.mp3"
+    },
+    {
+      "id": "า",
+      "unicode": "U+0E32",
+      "name": "sara aa",
+      "pronunciation": "aa",
+      "type": "long",
+      "position": "final",
+      "audioPath": "/audio/vowels/า.mp3"
+    },
+    {
+      "id": "ำ",
+      "unicode": "U+0E33",
+      "name": "sara am",
+      "pronunciation": "am",
+      "type": "compound",
+      "position": "final",
+      "audioPath": "/audio/vowels/ำ.mp3"
+    },
+    {
+      "id": "ิ",
+      "unicode": "U+0E34",
+      "name": "sara i",
+      "pronunciation": "i",
+      "type": "short",
+      "position": "above",
+      "audioPath": "/audio/vowels/ิ.mp3"
+    },
+    {
+      "id": "ี",
+      "unicode": "U+0E35",
+      "name": "sara ii",
+      "pronunciation": "ii",
+      "type": "long",
+      "position": "above",
+      "audioPath": "/audio/vowels/ี.mp3"
+    },
+    {
+      "id": "ึ",
+      "unicode": "U+0E36",
+      "name": "sara ue",
+      "pronunciation": "ue",
+      "type": "short",
+      "position": "above",
+      "audioPath": "/audio/vowels/ึ.mp3"
+    },
+    {
+      "id": "ื",
+      "unicode": "U+0E37",
+      "name": "sara uue",
+      "pronunciation": "uue",
+      "type": "long",
+      "position": "above",
+      "audioPath": "/audio/vowels/ื.mp3"
+    },
+    {
+      "id": "ุ",
+      "unicode": "U+0E38",
+      "name": "sara u",
+      "pronunciation": "u",
+      "type": "short",
+      "position": "below",
+      "audioPath": "/audio/vowels/ุ.mp3"
+    },
+    {
+      "id": "ู",
+      "unicode": "U+0E39",
+      "name": "sara uu",
+      "pronunciation": "uu",
+      "type": "long",
+      "position": "below",
+      "audioPath": "/audio/vowels/ู.mp3"
+    },
+    {
+      "id": "เ",
+      "unicode": "U+0E40",
+      "name": "sara e",
+      "pronunciation": "e",
+      "type": "short",
+      "position": "before",
+      "audioPath": "/audio/vowels/เ.mp3"
+    },
+    {
+      "id": "แ",
+      "unicode": "U+0E41",
+      "name": "sara ae",
+      "pronunciation": "ae",
+      "type": "long",
+      "position": "before",
+      "audioPath": "/audio/vowels/แ.mp3"
+    },
+    {
+      "id": "โ",
+      "unicode": "U+0E42",
+      "name": "sara o",
+      "pronunciation": "o",
+      "type": "short",
+      "position": "before",
+      "audioPath": "/audio/vowels/โ.mp3"
+    },
+    {
+      "id": "ใ",
+      "unicode": "U+0E43",
+      "name": "sara ai maimuan",
+      "pronunciation": "ai",
+      "type": "compound",
+      "position": "before",
+      "audioPath": "/audio/vowels/ใ.mp3"
+    },
+    {
+      "id": "ไ",
+      "unicode": "U+0E44",
+      "name": "sara ai maimalai",
+      "pronunciation": "ai",
+      "type": "compound",
+      "position": "before",
+      "audioPath": "/audio/vowels/ไ.mp3"
+    },
+    {
+      "id": "ๅ",
+      "unicode": "U+0E45",
+      "name": "lakkhangyao",
+      "pronunciation": "aa",
+      "type": "long",
+      "position": "final",
+      "audioPath": "/audio/vowels/ๅ.mp3"
+    },
+    {
+      "id": "ๆ",
+      "unicode": "U+0E46",
+      "name": "maiyamok",
+      "pronunciation": "repeat",
+      "type": "symbol",
+      "position": "final",
+      "audioPath": "/audio/vowels/ๆ.mp3"
+    },
+    {
+      "id": "็",
+      "unicode": "U+0E47",
+      "name": "maitaikhu",
+      "pronunciation": "short",
+      "type": "symbol",
+      "position": "above",
+      "audioPath": "/audio/vowels/็.mp3"
+    },
+    {
+      "id": "่",
+      "unicode": "U+0E48",
+      "name": "mai ek",
+      "pronunciation": "low",
+      "type": "tone",
+      "position": "above",
+      "audioPath": "/audio/vowels/่.mp3"
+    },
+    {
+      "id": "้",
+      "unicode": "U+0E49",
+      "name": "mai tho",
+      "pronunciation": "falling",
+      "type": "tone",
+      "position": "above",
+      "audioPath": "/audio/vowels/้.mp3"
+    },
+    {
+      "id": "๊",
+      "unicode": "U+0E4A",
+      "name": "mai tri",
+      "pronunciation": "high",
+      "type": "tone",
+      "position": "above",
+      "audioPath": "/audio/vowels/๊.mp3"
+    },
+    {
+      "id": "๋",
+      "unicode": "U+0E4B",
+      "name": "mai chattawa",
+      "pronunciation": "rising",
+      "type": "tone",
+      "position": "above",
+      "audioPath": "/audio/vowels/๋.mp3"
+    },
+    {
+      "id": "์",
+      "unicode": "U+0E4C",
+      "name": "thanthakhat",
+      "pronunciation": "silent",
+      "type": "symbol",
+      "position": "above",
+      "audioPath": "/audio/vowels/์.mp3"
+    },
+    {
+      "id": "ํ",
+      "unicode": "U+0E4D",
+      "name": "nikhahit",
+      "pronunciation": "m",
+      "type": "symbol",
+      "position": "above",
+      "audioPath": "/audio/vowels/ํ.mp3"
+    },
+    {
+      "id": "๎",
+      "unicode": "U+0E4E",
+      "name": "yamakkan",
+      "pronunciation": "yamakkan",
+      "type": "symbol",
+      "position": "above",
+      "audioPath": "/audio/vowels/๎.mp3"
+    },
+    {
+      "id": "๏",
+      "unicode": "U+0E4F",
+      "name": "fongman",
+      "pronunciation": "fongman",
+      "type": "symbol",
+      "position": "final",
+      "audioPath": "/audio/vowels/๏.mp3"
+    },
+    {
+      "id": "๐",
+      "unicode": "U+0E50",
+      "name": "zero",
+      "pronunciation": "0",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๐.mp3"
+    },
+    {
+      "id": "๑",
+      "unicode": "U+0E51",
+      "name": "one",
+      "pronunciation": "1",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๑.mp3"
+    },
+    {
+      "id": "๒",
+      "unicode": "U+0E52",
+      "name": "two",
+      "pronunciation": "2",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๒.mp3"
+    },
+    {
+      "id": "๓",
+      "unicode": "U+0E53",
+      "name": "three",
+      "pronunciation": "3",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๓.mp3"
+    },
+    {
+      "id": "๔",
+      "unicode": "U+0E54",
+      "name": "four",
+      "pronunciation": "4",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๔.mp3"
+    },
+    {
+      "id": "๕",
+      "unicode": "U+0E55",
+      "name": "five",
+      "pronunciation": "5",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๕.mp3"
+    },
+    {
+      "id": "๖",
+      "unicode": "U+0E56",
+      "name": "six",
+      "pronunciation": "6",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๖.mp3"
+    },
+    {
+      "id": "๗",
+      "unicode": "U+0E57",
+      "name": "seven",
+      "pronunciation": "7",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๗.mp3"
+    },
+    {
+      "id": "๘",
+      "unicode": "U+0E58",
+      "name": "eight",
+      "pronunciation": "8",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๘.mp3"
+    },
+    {
+      "id": "๙",
+      "unicode": "U+0E59",
+      "name": "nine",
+      "pronunciation": "9",
+      "type": "digit",
+      "position": "final",
+      "audioPath": "/audio/vowels/๙.mp3"
+    }
+  ],
+  "toneMarks": [
+    {
+      "id": "่",
+      "unicode": "U+0E48",
+      "name": "mai ek",
+      "tone": "low",
+      "description": "Low tone mark",
+      "audioPath": "/audio/tones/่.mp3"
+    },
+    {
+      "id": "้",
+      "unicode": "U+0E49",
+      "name": "mai tho",
+      "tone": "falling",
+      "description": "Falling tone mark",
+      "audioPath": "/audio/tones/้.mp3"
+    },
+    {
+      "id": "๊",
+      "unicode": "U+0E4A",
+      "name": "mai tri",
+      "tone": "high",
+      "description": "High tone mark",
+      "audioPath": "/audio/tones/๊.mp3"
+    },
+    {
+      "id": "๋",
+      "unicode": "U+0E4B",
+      "name": "mai chattawa",
+      "tone": "rising",
+      "description": "Rising tone mark",
+      "audioPath": "/audio/tones/๋.mp3"
+    },
+    {
+      "id": "็",
+      "unicode": "U+0E47",
+      "name": "maitaikhu",
+      "tone": "short",
+      "description": "Short vowel mark",
+      "audioPath": "/audio/tones/็.mp3"
+    }
+  ],
+  "metadata": {
+    "totalConsonants": 44,
+    "totalVowels": 32,
+    "totalToneMarks": 5,
+    "lastUpdated": "2024-10-18",
+    "version": "1.0.0"
+  }
+}
