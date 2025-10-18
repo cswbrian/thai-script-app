@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { 
   ChevronUpIcon, 
-  ChevronDownIcon,
-  FunnelIcon
+  ChevronDownIcon
 } from '@heroicons/react/24/outline'
 import { getCharacterGroups } from '../../utils/characters'
 import type { ThaiCharacter, CharacterGroup } from '../../utils/characters'
@@ -15,13 +14,11 @@ import { ResponsiveHeading, ResponsiveParagraph } from '../ui/ResponsiveTypograp
 const EnhancedCharacterOverview: React.FC = () => {
   const navigate = useNavigate()
   const characterGroups = getCharacterGroups()
-  const [showFilters, setShowFilters] = useState(false)
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set(['consonants-mid']))
   
   // Refs for smooth scrolling
   const groupRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-
 
   const handleCharacterClick = (character: ThaiCharacter) => {
     navigate(`/character/${character.id}`)
@@ -48,20 +45,10 @@ const EnhancedCharacterOverview: React.FC = () => {
     }
   }
 
-  const expandAllGroups = () => {
-    setExpandedGroups(new Set(characterGroups.map(g => g.id)))
-  }
-
-  const collapseAllGroups = () => {
-    setExpandedGroups(new Set())
-  }
-
   // Group categories for better organization
   const consonantGroups = characterGroups.filter(g => g.id.startsWith('consonants'))
   const vowelGroups = characterGroups.filter(g => g.id.startsWith('vowels'))
   const otherGroups = characterGroups.filter(g => !g.id.startsWith('consonants') && !g.id.startsWith('vowels'))
-
-  const totalCharacters = characterGroups.reduce((sum, group) => sum + group.characters.length, 0)
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -82,69 +69,34 @@ const EnhancedCharacterOverview: React.FC = () => {
 
             {/* Controls */}
             <div className="flex flex-col sm:flex-row gap-3 items-center">
-
-            {/* Quick Navigation */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              <TouchButton
-                variant="secondary"
-                size="sm"
-                onClick={() => scrollToGroup('consonants-mid')}
-              >
-                Consonants
-              </TouchButton>
-              <TouchButton
-                variant="secondary"
-                size="sm"
-                onClick={() => scrollToGroup('vowels-short')}
-              >
-                Vowels
-              </TouchButton>
-              <TouchButton
-                variant="secondary"
-                size="sm"
-                onClick={() => scrollToGroup('tone-marks')}
-              >
-                Tone Marks
-              </TouchButton>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Filter Panel */}
-      {showFilters && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="bg-white border-b border-gray-200"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-              <div className="flex flex-wrap gap-2">
+              {/* Quick Navigation */}
+              <div className="flex flex-wrap gap-2 justify-center">
                 <TouchButton
-                  variant="primary"
+                  variant="secondary"
                   size="sm"
-                  onClick={expandAllGroups}
+                  onClick={() => scrollToGroup('consonants-mid')}
                 >
-                  Expand All
+                  Consonants
                 </TouchButton>
                 <TouchButton
                   variant="secondary"
                   size="sm"
-                  onClick={collapseAllGroups}
+                  onClick={() => scrollToGroup('vowels-short')}
                 >
-                  Collapse All
+                  Vowels
                 </TouchButton>
-              </div>
-              
-              <div className="text-sm text-gray-600">
-                Showing {totalCharacters} characters in {characterGroups.length} groups
+                <TouchButton
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => scrollToGroup('tone-marks')}
+                >
+                  Tone Marks
+                </TouchButton>
               </div>
             </div>
           </div>
-        </motion.div>
-      )}
+        </div>
+      </div>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6" ref={scrollContainerRef}>
@@ -238,7 +190,6 @@ const EnhancedCharacterOverview: React.FC = () => {
               </div>
             </section>
           )}
-
         </div>
       </div>
 

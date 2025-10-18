@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import type { ThaiCharacter } from '../../utils/characters'
-import AudioControls from '../ui/AudioControls'
 
 interface CharacterCardProps {
   character: ThaiCharacter
