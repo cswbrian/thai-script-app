@@ -11,28 +11,29 @@
 - `src/index.css` - Tailwind CSS imports and global styles
 
 ### React Components
+- `src/components/ui/AudioControls.tsx` - Reusable audio controls with Howler.js integration
 - `src/components/ui/` - Reusable UI components (buttons, modals, etc.)
-- `src/components/thai/ThaiCharacterGrid.jsx` - Main character overview grid (Priority)
-- `src/components/thai/ThaiCharacterCard.jsx` - Individual Thai character display
-- `src/components/thai/CharacterDisplay.jsx` - Character learning interface
-- `src/components/thai/WritingPractice.jsx` - Interactive writing practice component
-- `src/components/thai/CharacterGroupTabs.jsx` - Navigation tabs for character groups
-- `src/components/learning/LessonCard.jsx` - Lesson selection component
-- `src/components/learning/LessonNavigation.jsx` - Lesson navigation with tabs
-- `src/components/learning/QuizInterface.jsx` - Quiz and test interface
-- `src/components/layout/Header.jsx` - Application header
-- `src/components/layout/Navigation.jsx` - Main navigation component
-- `src/components/layout/ProgressDashboard.jsx` - Progress tracking dashboard
+- `src/components/thai/ThaiCharacterGrid.tsx` - Main character overview grid (Priority)
+- `src/components/thai/CharacterCard.tsx` - Individual Thai character display
+- `src/components/thai/CharacterDisplay.tsx` - Character learning interface
+- `src/components/thai/WritingPractice.tsx` - Interactive writing practice component
+- `src/components/thai/CharacterGroupTabs.tsx` - Navigation tabs for character groups
+- `src/components/learning/LessonCard.tsx` - Lesson selection component
+- `src/components/learning/LessonNavigation.tsx` - Lesson navigation with tabs
+- `src/components/learning/QuizInterface.tsx` - Quiz and test interface
+- `src/components/layout/Header.tsx` - Application header
+- `src/components/layout/Navigation.tsx` - Main navigation component
+- `src/components/layout/ProgressDashboard.tsx` - Progress tracking dashboard
 
 ### Hooks and Utilities
-- `src/hooks/useAudio.js` - Custom hook for audio management
-- `src/hooks/useWriting.js` - Custom hook for writing practice
-- `src/hooks/useProgress.js` - Custom hook for progress tracking
-- `src/hooks/useLocalStorage.js` - Custom hook for local storage
-- `src/utils/storage.js` - IndexedDB storage utilities
-- `src/utils/characters.js` - Thai character utilities and validation
-- `src/utils/audio.js` - Audio management and text-to-speech integration
-- `src/utils/writing.js` - Writing practice utilities and stroke recognition
+- `src/hooks/useAudio.ts` - Custom hook for audio management with Howler.js
+- `src/hooks/useWriting.ts` - Custom hook for writing practice
+- `src/hooks/useProgress.ts` - Custom hook for progress tracking
+- `src/hooks/useLocalStorage.ts` - Custom hook for local storage
+- `src/utils/storage.ts` - IndexedDB storage utilities
+- `src/utils/characters.ts` - Thai character utilities and validation
+- `src/utils/audio.ts` - Audio management and Web Speech API fallback
+- `src/utils/writing.ts` - Writing practice utilities and stroke recognition
 
 ### Data and Configuration
 - `src/data/thai-characters.json` - Thai character data with audio paths and stroke data
@@ -87,7 +88,7 @@
   - [x] 2.5 Implement character cards with Thai symbol, pronunciation, and visual indicators
   - [x] 2.6 Add navigation tabs for different character groups (Consonants, Vowels, Tone Marks)
   - [x] 2.7 Create character selection functionality for individual learning
-  - [ ] 2.8 Add audio pronunciation for each character using Howler.js
+  - [x] 2.8 Add audio pronunciation for each character using Howler.js
   - [x] 2.9 Implement responsive grid layout optimized for mobile viewing
   - [ ] 2.10 Add progress indicators showing learned vs. unlearned characters
 
