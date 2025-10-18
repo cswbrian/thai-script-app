@@ -86,18 +86,9 @@ export const generateAudioText = (character: {
   pronunciation: string
   meaning?: string
 }): string => {
-  // Create a descriptive text for speech synthesis
-  const parts = [
-    character.id,
-    character.name,
-    `pronounced ${character.pronunciation}`
-  ]
-  
-  if (character.meaning) {
-    parts.push(`meaning ${character.meaning}`)
-  }
-  
-  return parts.join(', ')
+  // Play just the character name and pronunciation
+  // Format: "cho chan, pronounced ch"
+  return `${character.name}, pronounced ${character.pronunciation}`
 }
 
 /**
