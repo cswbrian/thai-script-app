@@ -5,10 +5,10 @@
   "type": "module",
   "description": "A Progressive Web Application for learning Thai script characters with interactive writing practice and audio pronunciation",
   "keywords": ["thai", "language", "learning", "pwa", "react", "education"],
-  "homepage": "https://yourusername.github.io/thai-script-app",
+  "homepage": "https://cswbrian.github.io/thai-script-app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/thai-script-app.git"
+    "url": "https://github.com/cswbrian/thai-script-app.git"
   },
   "scripts": {
     "dev": "vite",

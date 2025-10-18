@@ -35,7 +35,7 @@ A Progressive Web Application for learning Thai script characters with interacti
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/thai-script-app.git
+git clone https://github.com/cswbrian/thai-script-app.git
 cd thai-script-app
 ```
 
@@ -110,7 +110,7 @@ The app is configured for automatic deployment to GitHub Pages:
 
 1. Push to `main` or `master` branch
 2. GitHub Actions will automatically build and deploy
-3. App will be available at `https://yourusername.github.io/thai-script-app`
+3. App will be available at `https://cswbrian.github.io/thai-script-app`
 
 ### Manual Deployment
 
