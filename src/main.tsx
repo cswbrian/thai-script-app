@@ -6,7 +6,7 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('app')!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/thai-script-app">
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/thai-script-app'}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,

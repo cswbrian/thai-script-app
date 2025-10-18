@@ -186,8 +186,8 @@ const WritingPractice: React.FC<WritingPracticeProps> = ({
   }, [isDrawing, currentStroke, endStroke, historyIndex, strokes, detectStrokeOrder, validateStrokeSequence])
 
   const handleUndo = useCallback(() => {
-    if (historyIndex >= 0) {
-      setStrokes(history[historyIndex])
+    if (historyIndex >= 0 && history[historyIndex]) {
+      setStrokes(history[historyIndex] || [])
       setHistoryIndex(prev => prev - 1)
       setFeedbackPoints([]) // Clear feedback when undoing
       undoStroke()
@@ -197,7 +197,7 @@ const WritingPractice: React.FC<WritingPracticeProps> = ({
   const handleRedo = useCallback(() => {
     if (historyIndex < history.length - 1) {
       const nextIndex = historyIndex + 1
-      setStrokes(history[nextIndex])
+      setStrokes(history[nextIndex] || [])
       setHistoryIndex(nextIndex)
       setFeedbackPoints([]) // Clear feedback when redoing
       redoStroke()
@@ -338,6 +338,10 @@ const WritingPractice: React.FC<WritingPracticeProps> = ({
 
   // Render stroke lines
   const renderStrokes = () => {
+    if (!strokes || !Array.isArray(strokes)) {
+      return null
+    }
+    
     return strokes.map((stroke) => {
       const points = stroke.points.reduce((acc, point) => {
         return acc.concat([point.x, point.y])
@@ -359,6 +363,10 @@ const WritingPractice: React.FC<WritingPracticeProps> = ({
 
   // Render animated stroke lines
   const renderAnimatedStrokes = () => {
+    if (!animatedStrokes || !Array.isArray(animatedStrokes)) {
+      return null
+    }
+    
     return animatedStrokes.map((stroke) => {
       const points = stroke.points.reduce((acc, point) => {
         return acc.concat([point.x, point.y])
@@ -409,7 +417,9 @@ const WritingPractice: React.FC<WritingPracticeProps> = ({
 
   // Render real-time feedback points
   const renderFeedbackPoints = () => {
-    if (!showRealTimeFeedback) return null
+    if (!showRealTimeFeedback || !feedbackPoints || !Array.isArray(feedbackPoints)) {
+      return null
+    }
 
     return feedbackPoints.map((point, index) => {
       const colors = {

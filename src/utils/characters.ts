@@ -116,24 +116,6 @@ export const getVowelsByType = (type: 'short' | 'long' | 'compound' | 'symbol' |
   return thaiCharacters.vowels.filter((v: any) => v.type === type)
 }
 
-// Search characters by name or pronunciation
-export const searchCharacters = (query: string): ThaiCharacter[] => {
-  const thaiCharacters = thaiCharactersData as any
-  const allCharacters = [
-    ...thaiCharacters.consonants,
-    ...thaiCharacters.vowels,
-    ...thaiCharacters.toneMarks
-  ]
-  
-  const lowercaseQuery = query.toLowerCase()
-  
-  return allCharacters.filter((char: any) => 
-    char.name.toLowerCase().includes(lowercaseQuery) ||
-    char.pronunciation.toLowerCase().includes(lowercaseQuery) ||
-    char.id.includes(query) ||
-    (char.meaning && char.meaning.toLowerCase().includes(lowercaseQuery))
-  )
-}
 
 // Get statistics
 export const getCharacterStats = () => {

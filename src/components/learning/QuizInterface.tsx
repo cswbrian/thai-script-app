@@ -9,9 +9,17 @@ import {
 import type { ThaiCharacter } from '../../utils/characters'
 import AudioControls from '../ui/AudioControls'
 
+interface SubQuestion {
+  id: string
+  type: 'visual' | 'audio' | 'writing' | 'text' | 'multiple-choice' | 'character'
+  question: string
+  answer: string
+  options?: string[]
+}
+
 export interface QuizQuestion {
   id: string
-  type: 'recognition' | 'pronunciation' | 'writing' | 'mixed' | 'audio-to-character'
+  type: 'recognition' | 'pronunciation' | 'writing' | 'mixed' | 'audio-to-character' | 'comprehensive'
   question: string
   correctAnswer: string
   options?: string[]
@@ -20,6 +28,7 @@ export interface QuizQuestion {
   explanation?: string
   audioText?: string // Text that will be spoken for audio questions
   characterOptions?: ThaiCharacter[] // For audio-to-character matching
+  subQuestions?: SubQuestion[]
 }
 
 export interface QuizResult {
@@ -144,7 +153,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
         }
 
       case 'mixed':
-        const mixedTypes = ['recognition', 'pronunciation', 'writing', 'audio-to-character']
+        const mixedTypes = ['recognition', 'pronunciation', 'writing', 'audio-to-character', 'comprehensive']
         const selectedType = mixedTypes[Math.floor(Math.random() * mixedTypes.length)]
         return generateQuestion(selectedType as QuizQuestion['type'], character, index)
 
@@ -156,6 +165,34 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
           characterOptions: generateCharacterOptions(character),
           audioText: `${character.name}, pronounced ${character.pronunciation}`,
           explanation: `The pronunciation "${character.pronunciation}" corresponds to the character "${character.id}"`
+        }
+
+      case 'comprehensive':
+        return {
+          ...baseQuestion,
+          question: `Complete this comprehensive character assessment`,
+          correctAnswer: character.id,
+          subQuestions: [
+            {
+              id: 'visual',
+              type: 'visual',
+              question: `What is the pronunciation of this character?`,
+              answer: character.pronunciation
+            },
+            {
+              id: 'audio',
+              type: 'audio',
+              question: `Listen and identify this character`,
+              answer: character.id
+            },
+            {
+              id: 'writing',
+              type: 'writing',
+              question: `How many strokes does this character have?`,
+              answer: character.strokeCount?.toString() || 'Unknown'
+            }
+          ],
+          explanation: `This character "${character.id}" is pronounced "${character.pronunciation}" and has ${character.strokeCount || 'unknown'} strokes`
         }
 
       default:
@@ -258,6 +295,38 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     }, 1500)
   }
 
+  // Comprehensive answer handling
+  const [comprehensiveAnswers, setComprehensiveAnswers] = useState<Record<string, string>>({})
+
+  const handleComprehensiveAnswer = (subQuestionId: string, answer: string) => {
+    setComprehensiveAnswers(prev => ({
+      ...prev,
+      [subQuestionId]: answer
+    }))
+  }
+
+  const canSubmitComprehensive = () => {
+    if (!currentQuestion.subQuestions) return false
+    return currentQuestion.subQuestions.every(subQ => comprehensiveAnswers[subQ.id])
+  }
+
+  const handleComprehensiveSubmit = () => {
+    if (!canSubmitComprehensive()) return
+    
+    // Calculate score based on sub-questions
+    let correctAnswers = 0
+    currentQuestion.subQuestions?.forEach(subQ => {
+      if (comprehensiveAnswers[subQ.id] === subQ.answer) {
+        correctAnswers++
+      }
+    })
+    
+    const score = Math.round((correctAnswers / (currentQuestion.subQuestions?.length || 1)) * 100)
+    const isCorrect = score >= 70 // 70% threshold for comprehensive questions
+    
+    handleAnswerSelect(isCorrect ? currentQuestion.correctAnswer : 'incorrect')
+  }
+
   const handleTimeUp = () => {
     const currentQuestion = questions[currentQuestionIndex]
     const timeSpent = Math.round((Date.now() - questionStartTime) / 1000)
@@ -356,6 +425,54 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                     {currentQuestion.question}
                   </h3>
                   
+                  {/* Comprehensive Question */}
+                  {currentQuestion.type === 'comprehensive' && (
+                    <div className="mb-6">
+                      <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-6 mb-4">
+                        <div className="text-sm text-gray-600 mb-4">
+                          Complete all three parts of this comprehensive assessment:
+                        </div>
+                        
+                        {/* Character Display */}
+                        {currentQuestion.character && (
+                          <div className="text-center mb-6">
+                            <div className="text-6xl sm:text-8xl font-bold text-gray-900 thai-font mb-2">
+                              {currentQuestion.character.id}
+                            </div>
+                            {currentQuestion.audioPath && (
+                              <AudioControls
+                                audioPath={currentQuestion.audioPath}
+                                characterName={currentQuestion.character.name}
+                                character={currentQuestion.character}
+                                size="lg"
+                                showLabel={true}
+                              />
+                            )}
+                          </div>
+                        )}
+
+                        {/* Sub-questions */}
+                        <div className="space-y-4">
+                          {currentQuestion.subQuestions?.map((subQ, index) => (
+                            <div key={subQ.id} className="bg-white rounded-lg p-4 border border-gray-200">
+                              <div className="flex items-center space-x-3 mb-3">
+                                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs font-semibold text-blue-600">
+                                  {index + 1}
+                                </div>
+                                <div className="text-sm font-medium text-gray-900">
+                                  {subQ.question}
+                                </div>
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Answer: <span className="font-medium">{subQ.answer}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
                   {/* Audio-to-Character Question */}
                   {currentQuestion.type === 'audio-to-character' && (
                     <div className="mb-6">
@@ -420,6 +537,71 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                         </div>
                       </button>
                     ))
+                  ) : currentQuestion.type === 'comprehensive' ? (
+                    // Comprehensive answer input
+                    <div className="col-span-full space-y-4">
+                      {currentQuestion.subQuestions?.map((subQ, index) => (
+                        <div key={subQ.id} className="bg-white rounded-lg p-4 border border-gray-200">
+                          <div className="flex items-center space-x-3 mb-3">
+                            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs font-semibold text-blue-600">
+                              {index + 1}
+                            </div>
+                            <div className="text-sm font-medium text-gray-900">
+                              {subQ.question}
+                            </div>
+                          </div>
+                          
+                          {/* Input based on sub-question type */}
+                          {subQ.type === 'text' && (
+                            <input
+                              type="text"
+                              placeholder="Type your answer..."
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              onChange={(e) => handleComprehensiveAnswer(subQ.id, e.target.value)}
+                            />
+                          )}
+                          
+                          {subQ.type === 'multiple-choice' && (
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                              {subQ.options?.map((option, optIndex) => (
+                                <button
+                                  key={optIndex}
+                                  onClick={() => handleComprehensiveAnswer(subQ.id, option)}
+                                  className="p-2 text-sm font-medium text-gray-900 bg-gray-50 border border-gray-200 rounded-md hover:border-blue-300 hover:bg-blue-50 transition-all touch-button"
+                                >
+                                  {option}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                          
+                          {subQ.type === 'character' && (
+                            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                              {subQ.options?.map((option, optIndex) => (
+                                <button
+                                  key={optIndex}
+                                  onClick={() => handleComprehensiveAnswer(subQ.id, option)}
+                                  className="p-3 text-lg font-bold text-gray-900 bg-gray-50 border border-gray-200 rounded-md hover:border-blue-300 hover:bg-blue-50 transition-all touch-button"
+                                >
+                                  {option}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                      
+                      {/* Submit Comprehensive Answer */}
+                      <div className="text-center">
+                        <button
+                          onClick={() => handleComprehensiveSubmit()}
+                          disabled={!canSubmitComprehensive()}
+                          className="px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                          Submit Comprehensive Answer
+                        </button>
+                      </div>
+                    </div>
                   ) : (
                     // Regular text options
                     currentQuestion.options?.map((option, index) => (

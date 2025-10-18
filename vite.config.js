@@ -4,8 +4,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/thai-script-app/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'development' ? '/' : '/thai-script-app/',
   plugins: [
     react(),
     tailwindcss(),
@@ -20,8 +20,8 @@ export default defineConfig({
         background_color: '#111827',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/thai-script-app/',
-        start_url: '/thai-script-app/',
+        scope: mode === 'development' ? '/' : '/thai-script-app/',
+        start_url: mode === 'development' ? '/' : '/thai-script-app/',
         icons: [
           {
             src: 'pwa-icon.svg',
@@ -38,7 +38,47 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,svg,mp3,wav}']
+        globPatterns: ['**/*.{js,css,html,ico,svg,mp3,wav,woff,woff2,ttf,eot,png,jpg,jpeg,gif,webp}'],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+              }
+            }
+          },
+          {
+            urlPattern: /\.(?:mp3|wav|ogg)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'audio-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+              }
+            }
+          },
+          {
+            urlPattern: /^https:\/\/api\./i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24
+              },
+              networkTimeoutSeconds: 10
+            }
+          }
+        ],
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
       }
     })
   ],
@@ -50,4 +90,4 @@ export default defineConfig({
     port: 3000,
     open: true
   }
-})
+}))

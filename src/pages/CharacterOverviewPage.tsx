@@ -1,12 +1,8 @@
 import React from 'react'
-import ThaiCharacterGrid from '../components/thai/ThaiCharacterGrid'
+import CharacterOverview from '../components/thai/CharacterOverview'
 
 const CharacterOverviewPage: React.FC = () => {
-  return (
-    <div className="pb-20">
-      <ThaiCharacterGrid />
-    </div>
-  )
+  return <CharacterOverview />
 }
 
 export default CharacterOverviewPage

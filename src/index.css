@@ -18,6 +18,16 @@ body {
 /* Thai font support */
 .thai-font {
   font-family: 'Noto Sans Thai', 'Thonburi', 'Tahoma', sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Ensure Thai characters are properly rendered */
+.thai-character {
+  font-family: 'Noto Sans Thai', 'Thonburi', 'Tahoma', sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 /* Custom scrollbar for mobile */

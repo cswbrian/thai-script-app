@@ -33,13 +33,13 @@ const AudioControls: React.FC<AudioControlsProps> = ({
   }
 
   const sizeClasses = {
-    sm: 'h-3 w-3 p-1',
+    sm: 'h-1.5 w-1.5 p-0.5',
     md: 'h-4 w-4 p-1.5',
     lg: 'h-5 w-5 p-2',
   }
 
   const buttonClasses = `
-    rounded-full bg-gray-100 hover:bg-gray-200 transition-colors touch-button
+    rounded-full bg-gray-100/60 hover:bg-gray-200/80 transition-colors touch-button shadow-sm
     ${sizeClasses[size]}
     ${isLoading ? 'animate-pulse' : ''}
     ${error ? 'bg-red-100 hover:bg-red-200' : ''}

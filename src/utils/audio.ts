@@ -87,8 +87,8 @@ export const generateAudioText = (character: {
   meaning?: string
 }): string => {
   // Play just the character name and pronunciation
-  // Format: "cho chan, pronounced ch"
-  return `${character.name}, pronounced ${character.pronunciation}`
+  // Format: "cho chan, ch"
+  return `${character.name}, ${character.pronunciation}`
 }
 
 /**

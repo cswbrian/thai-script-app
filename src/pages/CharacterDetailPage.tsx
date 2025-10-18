@@ -1,11 +1,12 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeftIcon, PencilIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
 import { getCharacterById } from '../utils/characters'
 import AudioControls from '../components/ui/AudioControls'
 
 const CharacterDetailPage: React.FC = () => {
   const { characterId } = useParams<{ characterId: string }>()
+  const navigate = useNavigate()
   const character = characterId ? getCharacterById(characterId) : null
 
   if (!character) {
@@ -27,13 +28,11 @@ const CharacterDetailPage: React.FC = () => {
   }
 
   const handleWritingPractice = () => {
-    // Navigate to writing practice page
-    window.location.href = `/practice/${character.id}`
+    navigate(`/practice/${character.id}`)
   }
 
   const handleQuiz = () => {
-    // Navigate to quiz with this character
-    window.location.href = `/quiz?character=${character.id}`
+    navigate(`/quiz?character=${character.id}`)
   }
 
   return (
