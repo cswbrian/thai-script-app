@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getCharacterGroups } from '../../utils/characters'
 import type { ThaiCharacter } from '../../utils/characters'
 import CharacterCard from './CharacterCard'
@@ -6,6 +7,7 @@ import CharacterGroupTabs from './CharacterGroupTabs'
 
 const ThaiCharacterGrid: React.FC = () => {
   const [activeGroup, setActiveGroup] = useState<string>('consonants-mid')
+  const navigate = useNavigate()
   const characterGroups = getCharacterGroups()
   const currentGroup = characterGroups.find(group => group.id === activeGroup)
 
@@ -14,9 +16,8 @@ const ThaiCharacterGrid: React.FC = () => {
   }
 
   const handleCharacterClick = (character: ThaiCharacter) => {
-    // Navigate to character detail or practice page
-    console.log('Character clicked:', character)
-    // TODO: Implement navigation to character detail page
+    // Navigate to character detail page
+    navigate(`/character/${character.id}`)
   }
 
   return (

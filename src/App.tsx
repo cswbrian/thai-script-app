@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
 import CharacterOverviewPage from './pages/CharacterOverviewPage'
+import CharacterDetailPage from './pages/CharacterDetailPage'
 import LessonPage from './pages/LessonPage'
 import WritingPracticePage from './pages/WritingPracticePage'
 import QuizPage from './pages/QuizPage'
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/characters" element={<CharacterOverviewPage />} />
+        <Route path="/character/:characterId" element={<CharacterDetailPage />} />
         <Route path="/lesson/:lessonId" element={<LessonPage />} />
         <Route path="/practice/:characterId" element={<WritingPracticePage />} />
         <Route path="/quiz" element={<QuizPage />} />

@@ -27,7 +27,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
     <div
       className={`
         relative bg-white rounded-lg border-2 transition-all duration-200 cursor-pointer
-        hover:shadow-md hover:scale-105 touch-button
+        hover:shadow-lg hover:scale-105 hover:border-blue-300 active:scale-95 touch-button
         ${isLearned ? 'border-green-300 bg-green-50' : 'border-gray-200 hover:border-gray-300'}
         ${showProgress ? 'min-h-[120px]' : 'min-h-[100px]'}
       `}
@@ -55,6 +55,9 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
               {character.meaning}
             </div>
           )}
+          <div className="text-xs text-blue-500 font-medium mt-1">
+            Click to learn
+          </div>
         </div>
 
         {/* Audio Button */}

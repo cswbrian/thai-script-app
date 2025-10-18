@@ -86,7 +86,7 @@
   - [x] 2.4 Create ThaiCharacterGrid React component with Tailwind grid layout
   - [x] 2.5 Implement character cards with Thai symbol, pronunciation, and visual indicators
   - [x] 2.6 Add navigation tabs for different character groups (Consonants, Vowels, Tone Marks)
-  - [ ] 2.7 Create character selection functionality for individual learning
+  - [x] 2.7 Create character selection functionality for individual learning
   - [ ] 2.8 Add audio pronunciation for each character using Howler.js
   - [ ] 2.9 Implement responsive grid layout optimized for mobile viewing
   - [ ] 2.10 Add progress indicators showing learned vs. unlearned characters
