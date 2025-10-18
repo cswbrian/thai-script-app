@@ -2,6 +2,21 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { LessonProgress } from '../utils/lessons'
 
+export interface LessonCompletion {
+  lessonId: string
+  completedAt: Date
+  score: number
+  timeSpent: number // in seconds
+  attempts: number
+  charactersLearned: string[]
+  quizSessions: string[] // Array of quiz session IDs
+  writingPracticeSessions: string[] // Array of writing practice session IDs
+  masteryLevel: 'beginner' | 'intermediate' | 'advanced' | 'expert'
+  nextReviewDate?: Date
+  isLocked: boolean
+  prerequisitesMet: boolean
+}
+
 export interface CharacterProgress {
   characterId: string
   masteryLevel: 'learning' | 'practicing' | 'mastered'
@@ -54,6 +69,7 @@ interface ProgressStore {
   // Lesson Progress
   lessonProgress: Record<string, LessonProgress>
   completedLessonIds: string[]
+  lessonCompletions: Record<string, LessonCompletion>
   
   // Character Progress
   characterProgress: Record<string, CharacterProgress>
@@ -66,7 +82,7 @@ interface ProgressStore {
   
   // Actions
   updateLessonProgress: (lessonId: string, progress: Partial<LessonProgress>) => void
-  completeLesson: (lessonId: string, score: number, timeSpent: number) => void
+  completeLesson: (lessonId: string, score: number, timeSpent: number, charactersLearned: string[]) => void
   updateCharacterProgress: (characterId: string, isCorrect: boolean, responseTime: number) => void
   addQuizSession: (session: QuizSession) => void
   updateLearningStreak: () => void
@@ -75,6 +91,14 @@ interface ProgressStore {
   getWeakCharacters: () => string[]
   getStrongCharacters: () => string[]
   getOverallProgress: () => number
+  
+  // Enhanced Lesson Completion Actions
+  startLessonAttempt: (lessonId: string) => void
+  recordLessonActivity: (lessonId: string, activityType: 'quiz' | 'writing' | 'review', sessionId: string) => void
+  checkLessonPrerequisites: (lessonId: string) => boolean
+  unlockLesson: (lessonId: string) => void
+  getLessonCompletionStatus: (lessonId: string) => LessonCompletion | null
+  getNextRecommendedLesson: () => string | null
 }
 
 const initialUserStats: UserStats = {
@@ -100,6 +124,7 @@ export const useProgressStore = create<ProgressStore>()(
       // Initial State
       lessonProgress: {},
       completedLessonIds: [],
+      lessonCompletions: {},
       characterProgress: {},
       quizSessions: [],
       userStats: initialUserStats,
@@ -118,9 +143,26 @@ export const useProgressStore = create<ProgressStore>()(
         }))
       },
 
-      completeLesson: (lessonId: string, score: number, timeSpent: number) => {
+      completeLesson: (lessonId: string, score: number, timeSpent: number, charactersLearned: string[]) => {
         set(state => {
           const isAlreadyCompleted = state.completedLessonIds.includes(lessonId)
+          const now = new Date()
+          
+          // Create lesson completion record
+          const lessonCompletion: LessonCompletion = {
+            lessonId,
+            completedAt: now,
+            score,
+            timeSpent,
+            attempts: state.lessonCompletions[lessonId]?.attempts ? state.lessonCompletions[lessonId].attempts + 1 : 1,
+            charactersLearned,
+            quizSessions: [],
+            writingPracticeSessions: [],
+            masteryLevel: score >= 90 ? 'expert' : score >= 75 ? 'advanced' : score >= 60 ? 'intermediate' : 'beginner',
+            nextReviewDate: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+            isLocked: false,
+            prerequisitesMet: true
+          }
           
           return {
             lessonProgress: {
@@ -129,12 +171,16 @@ export const useProgressStore = create<ProgressStore>()(
                 ...state.lessonProgress[lessonId],
                 lessonId,
                 isCompleted: true,
-                completionDate: new Date(),
+                completionDate: now,
                 score,
                 timeSpent,
                 bestScore: Math.max(state.lessonProgress[lessonId]?.bestScore || 0, score),
                 attempts: (state.lessonProgress[lessonId]?.attempts || 0) + 1
               }
+            },
+            lessonCompletions: {
+              ...state.lessonCompletions,
+              [lessonId]: lessonCompletion
             },
             completedLessonIds: isAlreadyCompleted 
               ? state.completedLessonIds 
@@ -144,7 +190,8 @@ export const useProgressStore = create<ProgressStore>()(
               totalLessonsCompleted: isAlreadyCompleted 
                 ? state.userStats.totalLessonsCompleted 
                 : state.userStats.totalLessonsCompleted + 1,
-              totalTimeSpent: state.userStats.totalTimeSpent + timeSpent
+              totalTimeSpent: state.userStats.totalTimeSpent + Math.round(timeSpent / 60), // Convert to minutes
+              charactersMastered: Math.max(state.userStats.charactersMastered, charactersLearned.length)
             }
           }
         })
@@ -294,6 +341,89 @@ export const useProgressStore = create<ProgressStore>()(
           .filter(char => char.masteryLevel === 'mastered').length
         
         return Math.round((masteredCharacters / totalCharacters) * 100)
+      },
+
+      // Enhanced Lesson Completion Actions
+      startLessonAttempt: (lessonId: string) => {
+        set(state => ({
+          lessonCompletions: {
+            ...state.lessonCompletions,
+            [lessonId]: {
+              ...state.lessonCompletions[lessonId],
+              lessonId,
+              completedAt: new Date(),
+              score: 0,
+              timeSpent: 0,
+              attempts: (state.lessonCompletions[lessonId]?.attempts || 0) + 1,
+              charactersLearned: [],
+              quizSessions: [],
+              writingPracticeSessions: [],
+              masteryLevel: 'beginner',
+              isLocked: false,
+              prerequisitesMet: true
+            }
+          }
+        }))
+      },
+
+      recordLessonActivity: (lessonId: string, activityType: 'quiz' | 'writing' | 'review', sessionId: string) => {
+        set(state => {
+          const completion = state.lessonCompletions[lessonId]
+          if (!completion) return state
+
+          const updatedCompletion = { ...completion }
+          if (activityType === 'quiz') {
+            updatedCompletion.quizSessions = [...completion.quizSessions, sessionId]
+          } else if (activityType === 'writing') {
+            updatedCompletion.writingPracticeSessions = [...completion.writingPracticeSessions, sessionId]
+          }
+
+          return {
+            lessonCompletions: {
+              ...state.lessonCompletions,
+              [lessonId]: updatedCompletion
+            }
+          }
+        })
+      },
+
+      checkLessonPrerequisites: (_lessonId: string) => {
+        // This would check against lesson prerequisites from lessons.json
+        // For now, return true for all lessons
+        return true
+      },
+
+      unlockLesson: (lessonId: string) => {
+        set(state => ({
+          lessonCompletions: {
+            ...state.lessonCompletions,
+            [lessonId]: {
+              ...state.lessonCompletions[lessonId],
+              lessonId,
+              isLocked: false,
+              prerequisitesMet: true
+            }
+          }
+        }))
+      },
+
+      getLessonCompletionStatus: (lessonId: string) => {
+        return get().lessonCompletions[lessonId] || null
+      },
+
+      getNextRecommendedLesson: () => {
+        const state = get()
+        const completedIds = state.completedLessonIds
+        const allLessons = ['lesson-1', 'lesson-2', 'lesson-3', 'lesson-4', 'lesson-5', 'lesson-6', 'lesson-7', 'lesson-8', 'lesson-9', 'lesson-10']
+        
+        // Find the first incomplete lesson
+        for (const lessonId of allLessons) {
+          if (!completedIds.includes(lessonId)) {
+            return lessonId
+          }
+        }
+        
+        return null // All lessons completed
       }
     }),
     {

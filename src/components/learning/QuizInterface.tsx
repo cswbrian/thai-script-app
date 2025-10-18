@@ -11,13 +11,15 @@ import AudioControls from '../ui/AudioControls'
 
 export interface QuizQuestion {
   id: string
-  type: 'recognition' | 'pronunciation' | 'writing' | 'mixed'
+  type: 'recognition' | 'pronunciation' | 'writing' | 'mixed' | 'audio-to-character'
   question: string
   correctAnswer: string
   options?: string[]
   character?: ThaiCharacter
   audioPath?: string
   explanation?: string
+  audioText?: string // Text that will be spoken for audio questions
+  characterOptions?: ThaiCharacter[] // For audio-to-character matching
 }
 
 export interface QuizResult {
@@ -142,9 +144,19 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
         }
 
       case 'mixed':
-        const mixedTypes = ['recognition', 'pronunciation', 'writing']
+        const mixedTypes = ['recognition', 'pronunciation', 'writing', 'audio-to-character']
         const selectedType = mixedTypes[Math.floor(Math.random() * mixedTypes.length)]
         return generateQuestion(selectedType as QuizQuestion['type'], character, index)
+
+      case 'audio-to-character':
+        return {
+          ...baseQuestion,
+          question: `Listen to the pronunciation and select the correct character`,
+          correctAnswer: character.id,
+          characterOptions: generateCharacterOptions(character),
+          audioText: `${character.name}, pronounced ${character.pronunciation}`,
+          explanation: `The pronunciation "${character.pronunciation}" corresponds to the character "${character.id}"`
+        }
 
       default:
         return baseQuestion as QuizQuestion
@@ -191,6 +203,20 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       const randomStroke = strokeCounts[Math.floor(Math.random() * strokeCounts.length)].toString()
       if (!options.includes(randomStroke)) {
         options.push(randomStroke)
+      }
+    }
+    
+    return shuffleArray(options)
+  }
+
+  const generateCharacterOptions = (character: ThaiCharacter): ThaiCharacter[] => {
+    const options = [character]
+    const allCharacters = config.characters
+    
+    while (options.length < 4 && options.length < allCharacters.length) {
+      const randomChar = allCharacters[Math.floor(Math.random() * allCharacters.length)]
+      if (!options.some(opt => opt.id === randomChar.id)) {
+        options.push(randomChar)
       }
     }
     
@@ -330,8 +356,28 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                     {currentQuestion.question}
                   </h3>
                   
+                  {/* Audio-to-Character Question */}
+                  {currentQuestion.type === 'audio-to-character' && (
+                    <div className="mb-6">
+                      <div className="bg-blue-50 rounded-lg p-6 mb-4">
+                        <div className="text-sm text-gray-600 mb-3">
+                          Listen to the pronunciation and select the correct character:
+                        </div>
+                        {currentQuestion.character && currentQuestion.audioPath && (
+                          <AudioControls
+                            audioPath={currentQuestion.audioPath}
+                            characterName={currentQuestion.character.name}
+                            character={currentQuestion.character}
+                            size="lg"
+                            showLabel={true}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  
                   {/* Character Display */}
-                  {currentQuestion.character && (
+                  {currentQuestion.character && currentQuestion.type !== 'audio-to-character' && (
                     <div className="mb-6">
                       <div className="text-6xl sm:text-8xl font-bold text-gray-900 thai-font mb-2">
                         {currentQuestion.character.id}
@@ -351,17 +397,43 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
 
                 {/* Answer Options */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {currentQuestion.options?.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswerSelect(option)}
-                      className="p-4 text-left border-2 border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors touch-button"
-                    >
-                      <div className="text-lg font-medium text-gray-900">
-                        {option}
-                      </div>
-                    </button>
-                  ))}
+                  {currentQuestion.type === 'audio-to-character' && currentQuestion.characterOptions ? (
+                    // Character options for audio-to-character questions
+                    currentQuestion.characterOptions.map((character, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleAnswerSelect(character.id)}
+                        className="p-4 text-left border-2 border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors touch-button"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className="text-3xl font-bold text-gray-900 thai-font">
+                            {character.id}
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">
+                              {character.name}
+                            </div>
+                            <div className="text-xs text-gray-600">
+                              {character.pronunciation}
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    ))
+                  ) : (
+                    // Regular text options
+                    currentQuestion.options?.map((option, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleAnswerSelect(option)}
+                        className="p-4 text-left border-2 border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors touch-button"
+                      >
+                        <div className="text-lg font-medium text-gray-900">
+                          {option}
+                        </div>
+                      </button>
+                    ))
+                  )}
                 </div>
 
                 {/* Navigation */}

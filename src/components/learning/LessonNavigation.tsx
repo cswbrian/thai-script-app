@@ -138,7 +138,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
         <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
           Learning Progress
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           <div className="text-center">
             <div className="text-xl sm:text-2xl font-bold text-blue-600">
               {completedLessons.length}
@@ -168,23 +168,23 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
 
       {/* Tab Navigation */}
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className="flex flex-wrap gap-1 sm:gap-2 p-1 bg-gray-100 rounded-lg">
+        <Tab.List className="flex flex-wrap gap-1 sm:gap-2 p-1 bg-gray-100 rounded-lg overflow-x-auto">
           {categories.map((category) => (
             <Tab
               key={category.id}
               className={({ selected }) =>
-                `flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 md:px-4 py-2 rounded-md transition-all duration-200 touch-button ${
+                `flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 md:px-4 py-2 rounded-md transition-all duration-200 touch-button whitespace-nowrap ${
                   selected
                     ? 'bg-white shadow-sm border border-gray-200'
                     : 'hover:bg-gray-50'
                 }`
               }
             >
-              <category.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+              <category.icon className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
               <span className="text-xs sm:text-sm font-medium truncate">
                 {category.name}
               </span>
-              <span className="text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-gray-200 text-gray-600">
+              <span className="text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-gray-200 text-gray-600 flex-shrink-0">
                 {category.count}
               </span>
             </Tab>
@@ -210,7 +210,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
               </div>
 
               {/* Lessons Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 {category.lessons.map((lesson) => (
                   <LessonCard
                     key={lesson.id}
@@ -219,6 +219,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
                     isAvailable={availableLessons.some(l => l.id === lesson.id)}
                     isCompleted={completedLessonIds.includes(lesson.id)}
                     onStartLesson={onStartLesson}
+                    className="h-fit"
                   />
                 ))}
               </div>

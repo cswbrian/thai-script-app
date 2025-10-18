@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   PlayIcon, 
@@ -6,7 +6,11 @@ import {
   AcademicCapIcon,
   CheckCircleIcon,
   LockClosedIcon,
-  StarIcon
+  StarIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  BookOpenIcon,
+  TagIcon
 } from '@heroicons/react/24/outline'
 import type { LessonWithCharacters, LessonProgress } from '../../utils/lessons'
 
@@ -27,11 +31,43 @@ const LessonCard: React.FC<LessonCardProps> = ({
   onStartLesson,
   className = ''
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false)
+  
   const handleStartLesson = () => {
     if (onStartLesson && isAvailable) {
       onStartLesson(lesson.id)
     }
   }
+
+  // Generate learning objectives based on lesson content
+  const getLearningObjectives = () => {
+    const objectives = []
+    
+    if (lesson.category === 'consonants') {
+      objectives.push(`Learn ${lesson.characters.length} consonant characters`)
+      objectives.push('Master consonant pronunciation and recognition')
+      objectives.push('Understand consonant class system')
+    } else if (lesson.category === 'vowels') {
+      objectives.push(`Learn ${lesson.characters.length} vowel characters`)
+      objectives.push('Master vowel pronunciation and recognition')
+      objectives.push('Understand vowel combinations')
+    } else if (lesson.category === 'tone-marks') {
+      objectives.push(`Learn ${lesson.characters.length} tone mark characters`)
+      objectives.push('Master tone mark usage and pronunciation')
+      objectives.push('Understand tone rules')
+    } else if (lesson.category === 'review') {
+      objectives.push('Review previously learned characters')
+      objectives.push('Practice character recognition and writing')
+      objectives.push('Consolidate learning through mixed exercises')
+    }
+    
+    objectives.push('Complete interactive exercises and quizzes')
+    objectives.push('Achieve 80% accuracy in assessments')
+    
+    return objectives
+  }
+
+  const learningObjectives = getLearningObjectives()
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -108,17 +144,36 @@ const LessonCard: React.FC<LessonCardProps> = ({
 
         {/* Learning Objectives */}
         <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">Learning Objectives:</h4>
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-sm font-medium text-gray-700 flex items-center">
+              <TagIcon className="h-4 w-4 text-blue-500 mr-1" />
+              Learning Objectives:
+            </h4>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsExpanded(!isExpanded)
+              }}
+              className="text-blue-600 hover:text-blue-800 text-xs font-medium flex items-center"
+            >
+              {isExpanded ? 'Show Less' : 'Show All'}
+              {isExpanded ? (
+                <ChevronUpIcon className="h-3 w-3 ml-1" />
+              ) : (
+                <ChevronDownIcon className="h-3 w-3 ml-1" />
+              )}
+            </button>
+          </div>
           <ul className="text-sm text-gray-600 space-y-1">
-            {lesson.learningObjectives.slice(0, 2).map((objective, index) => (
+            {(isExpanded ? learningObjectives : learningObjectives.slice(0, 2)).map((objective, index) => (
               <li key={index} className="flex items-start">
                 <AcademicCapIcon className="h-4 w-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
                 <span>{objective}</span>
               </li>
             ))}
-            {lesson.learningObjectives.length > 2 && (
+            {!isExpanded && learningObjectives.length > 2 && (
               <li className="text-gray-500 text-xs">
-                +{lesson.learningObjectives.length - 2} more objectives
+                +{learningObjectives.length - 2} more objectives
               </li>
             )}
           </ul>
@@ -162,6 +217,52 @@ const LessonCard: React.FC<LessonCardProps> = ({
                   width: `${(progress.charactersMastered.length / lesson.totalCharacters) * 100}%` 
                 }}
               ></div>
+            </div>
+          </div>
+        )}
+
+        {/* Expanded Lesson Details */}
+        {isExpanded && (
+          <div className="border-t border-gray-200 pt-4 mt-4">
+            <div className="space-y-4">
+              {/* Character Preview */}
+              <div>
+                <h5 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+                  <BookOpenIcon className="h-4 w-4 text-green-500 mr-1" />
+                  Characters in this lesson:
+                </h5>
+                <div className="flex flex-wrap gap-2">
+                  {lesson.characters.map((character) => (
+                    <div
+                      key={character.id}
+                      className="flex items-center space-x-2 px-3 py-1 bg-gray-100 rounded-lg text-sm"
+                    >
+                      <span className="text-lg font-bold text-gray-900 thai-font">
+                        {character.id}
+                      </span>
+                      <span className="text-gray-600">{character.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Prerequisites */}
+              {lesson.prerequisites.length > 0 && (
+                <div>
+                  <h5 className="text-sm font-medium text-gray-700 mb-2">
+                    Prerequisites:
+                  </h5>
+                  <div className="text-sm text-gray-600">
+                    Complete these lessons first: {lesson.prerequisites.join(', ')}
+                  </div>
+                </div>
+              )}
+
+              {/* Estimated Time */}
+              <div className="flex items-center text-sm text-gray-600">
+                <ClockIcon className="h-4 w-4 mr-2 text-gray-400" />
+                <span>Estimated time: {lesson.characters.length * 5} minutes</span>
+              </div>
             </div>
           </div>
         )}

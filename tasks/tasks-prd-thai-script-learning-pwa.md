@@ -100,15 +100,15 @@
   - [x] 3.4 Create lessons.js for lesson management and navigation logic
   - [x] 3.5 Set up data validation and error handling for character/lesson data
 
-- [ ] 4.0 Core Learning Interface Components
+- [x] 4.0 Core Learning Interface Components
   - [x] 4.1 Create LessonCard React component with Headless UI and Tailwind styling
   - [x] 4.2 Implement ThaiCharacterCard component with Framer Motion animations
   - [x] 4.3 Create CharacterDisplay component with character visualization and audio controls
   - [x] 4.4 Add character information display (pronunciation, stroke count, meaning)
   - [x] 4.5 Create LessonNavigation component with Headless UI Tabs
-  - [ ] 4.6 Implement lesson completion tracking with Zustand store
-  - [ ] 4.7 Add lesson description and learning objectives display
-  - [ ] 4.8 Create responsive grid layout using Tailwind CSS Grid
+  - [x] 4.6 Implement lesson completion tracking with Zustand store
+  - [x] 4.7 Add lesson description and learning objectives display
+  - [x] 4.8 Create responsive grid layout using Tailwind CSS Grid
 
 - [x] 5.0 Writing Practice Module
   - [x] 5.1 Create WritingPractice React component with React-Konva canvas
