@@ -4,7 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "description": "A Progressive Web Application for learning Thai script characters with interactive writing practice and audio pronunciation",
-  "keywords": ["thai", "language", "learning", "pwa", "react", "education"],
+  "keywords": [
+    "thai",
+    "language",
+    "learning",
+    "pwa",
+    "react",
+    "education"
+  ],
   "homepage": "https://cswbrian.github.io/thai-script-app",
   "repository": {
     "type": "git",
@@ -39,6 +46,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-konva": "^19.0.10",
+    "react-router-dom": "^7.9.4",
     "tailwindcss": "^4.1.14",
     "zustand": "^5.0.8"
   }

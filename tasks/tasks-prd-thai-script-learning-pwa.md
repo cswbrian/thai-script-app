@@ -77,7 +77,7 @@
   - [x] 1.6 Configure Capacitor for future mobile app conversion
   - [ ] 1.7 Set up React Router for navigation between lessons and components
   - [x] 1.8 Initialize Git repository and create .gitignore
-  - [ ] 1.9 Set up GitHub repository and configure GitHub Pages deployment
+  - [x] 1.9 Set up GitHub repository and configure GitHub Pages deployment
 
 - [ ] 2.0 Thai Character Overview Page (Priority)
   - [ ] 2.1 Research and compile Thai character data (44 consonants, 32 vowels, tone marks)
