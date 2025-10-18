@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/thai-script-app/',
   plugins: [
     react(),
     tailwindcss(),
@@ -19,8 +20,8 @@ export default defineConfig({
         background_color: '#111827',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
+        scope: '/thai-script-app/',
+        start_url: '/thai-script-app/',
         icons: [
           {
             src: 'pwa-icon.svg',
