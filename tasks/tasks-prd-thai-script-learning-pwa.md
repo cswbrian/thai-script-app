@@ -76,7 +76,7 @@
   - [x] 1.5 Set up Tailwind CSS with mobile-first responsive configuration
   - [x] 1.6 Configure Capacitor for future mobile app conversion
   - [ ] 1.7 Set up React Router for navigation between lessons and components
-  - [ ] 1.8 Initialize Git repository and create .gitignore
+  - [x] 1.8 Initialize Git repository and create .gitignore
   - [ ] 1.9 Set up GitHub repository and configure GitHub Pages deployment
 
 - [ ] 2.0 Thai Character Overview Page (Priority)

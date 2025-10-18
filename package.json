@@ -3,6 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "A Progressive Web Application for learning Thai script characters with interactive writing practice and audio pronunciation",
+  "keywords": ["thai", "language", "learning", "pwa", "react", "education"],
+  "homepage": "https://yourusername.github.io/thai-script-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/thai-script-app.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -24,9 +31,13 @@
     "@capacitor/status-bar": "^7.0.3",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "framer-motion": "^12.23.24",
     "howler": "^2.2.4",
     "konva": "^10.0.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-konva": "^19.0.10",
     "tailwindcss": "^4.1.14",
     "zustand": "^5.0.8"
