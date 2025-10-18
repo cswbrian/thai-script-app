@@ -101,9 +101,9 @@
 
 - [ ] 4.0 Core Learning Interface Components
   - [ ] 4.1 Create LessonCard React component with Headless UI and Tailwind styling
-  - [ ] 4.2 Implement ThaiCharacterCard component with Framer Motion animations
-  - [ ] 4.3 Create CharacterDisplay component with character visualization and audio controls
-  - [ ] 4.4 Add character information display (pronunciation, stroke count, meaning)
+  - [x] 4.2 Implement ThaiCharacterCard component with Framer Motion animations
+  - [x] 4.3 Create CharacterDisplay component with character visualization and audio controls
+  - [x] 4.4 Add character information display (pronunciation, stroke count, meaning)
   - [ ] 4.5 Create LessonNavigation component with Headless UI Tabs
   - [ ] 4.6 Implement lesson completion tracking with Zustand store
   - [ ] 4.7 Add lesson description and learning objectives display
@@ -120,9 +120,9 @@
   - [ ] 5.8 Implement stroke recognition algorithm using custom React hook
 
 - [ ] 6.0 Audio Integration and Pronunciation
-  - [ ] 6.1 Create useAudio custom React hook with Howler.js integration
-  - [ ] 6.2 Implement text-to-speech fallback using Web Speech API
-  - [ ] 6.3 Create AudioControls component with Heroicons and Tailwind styling
+  - [x] 6.1 Create useAudio custom React hook with Howler.js integration
+  - [x] 6.2 Implement text-to-speech fallback using Web Speech API
+  - [x] 6.3 Create AudioControls component with Heroicons and Tailwind styling
   - [ ] 6.4 Add audio preloading strategy with Howler.js sound sprites
   - [ ] 6.5 Implement audio compression and optimization for mobile
   - [ ] 6.6 Create audio settings component with volume control and mute
