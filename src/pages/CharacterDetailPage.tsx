@@ -1,7 +1,8 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeftIcon, SpeakerWaveIcon, PencilIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftIcon, PencilIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
 import { getCharacterById } from '../utils/characters'
+import AudioControls from '../components/ui/AudioControls'
 
 const CharacterDetailPage: React.FC = () => {
   const { characterId } = useParams<{ characterId: string }>()
@@ -23,11 +24,6 @@ const CharacterDetailPage: React.FC = () => {
         </div>
       </div>
     )
-  }
-
-  const handleAudioPlay = () => {
-    // TODO: Implement audio playback using Howler.js
-    console.log('Playing audio for:', character.name)
   }
 
   const handleWritingPractice = () => {
@@ -104,14 +100,19 @@ const CharacterDetailPage: React.FC = () => {
                 )}
               </div>
 
-              {/* Audio Button */}
-              <button
-                onClick={handleAudioPlay}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-6 touch-button"
-              >
-                <SpeakerWaveIcon className="h-6 w-6 mr-2" />
-                Play Pronunciation
-              </button>
+              {/* Audio Controls */}
+              {character.audioPath && (
+                <div className="mb-6">
+                  <AudioControls
+                    audioPath={character.audioPath}
+                    characterName={character.name}
+                    character={character}
+                    size="lg"
+                    showLabel={true}
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  />
+                </div>
+              )}
             </div>
           </div>
 

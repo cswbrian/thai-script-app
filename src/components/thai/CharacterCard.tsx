@@ -1,6 +1,6 @@
 import React from 'react'
-import { SpeakerWaveIcon } from '@heroicons/react/24/outline'
 import type { ThaiCharacter } from '../../utils/characters'
+import AudioControls from '../ui/AudioControls'
 
 interface CharacterCardProps {
   character: ThaiCharacter
@@ -17,11 +17,6 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   isLearned = false,
   showProgress = false
 }) => {
-  const handleAudioClick = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    // TODO: Implement audio playback using Howler.js
-    console.log('Playing audio for:', character.id)
-  }
 
   return (
     <div
@@ -60,14 +55,17 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
           </div>
         </div>
 
-        {/* Audio Button */}
-        <button
-          onClick={handleAudioClick}
-          className="absolute top-1 right-1 sm:top-2 sm:right-2 p-1 sm:p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors touch-button"
-          aria-label={`Play pronunciation for ${character.name}`}
-        >
-          <SpeakerWaveIcon className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
-        </button>
+        {/* Audio Controls */}
+        {character.audioPath && (
+          <div className="absolute top-1 right-1 sm:top-2 sm:right-2">
+            <AudioControls
+              audioPath={character.audioPath}
+              characterName={character.name}
+              character={character}
+              size="sm"
+            />
+          </div>
+        )}
 
         {/* Group Color Indicator */}
         <div className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-lg ${groupColor}`}></div>

@@ -1,0 +1,162 @@
+import { useCallback, useRef, useState } from 'react'
+import { Howl } from 'howler'
+import AudioManager, { generateAudioText, checkAudioFileExists } from '../utils/audio'
+import type { ThaiCharacter } from '../utils/characters'
+
+interface AudioState {
+  isPlaying: boolean
+  isLoading: boolean
+  error: string | null
+}
+
+interface UseAudioReturn {
+  playAudio: (audioPath: string, character?: ThaiCharacter) => Promise<void>
+  stopAudio: () => void
+  isPlaying: boolean
+  isLoading: boolean
+  error: string | null
+}
+
+export const useAudio = (): UseAudioReturn => {
+  const [state, setState] = useState<AudioState>({
+    isPlaying: false,
+    isLoading: false,
+    error: null,
+  })
+
+  const currentHowl = useRef<Howl | null>(null)
+
+  const playAudio = useCallback(async (audioPath: string, character?: ThaiCharacter): Promise<void> => {
+    try {
+      // Stop any currently playing audio
+      if (currentHowl.current) {
+        currentHowl.current.stop()
+        currentHowl.current = null
+      }
+
+      setState({
+        isPlaying: false,
+        isLoading: true,
+        error: null,
+      })
+
+      // Check if audio file exists
+      const audioExists = await checkAudioFileExists(audioPath)
+      
+      if (!audioExists && character) {
+        // Fallback to speech synthesis
+        const audioManager = AudioManager.getInstance()
+        if (audioManager.isSpeechSynthesisAvailable()) {
+          const audioText = generateAudioText(character)
+          await audioManager.playFallbackAudio({
+            text: audioText,
+            language: 'th-TH',
+            rate: 0.7,
+            pitch: 1.0,
+            volume: 0.8
+          })
+          setState({
+            isPlaying: false,
+            isLoading: false,
+            error: null,
+          })
+          return
+        } else {
+          throw new Error('Audio file not found and speech synthesis not available')
+        }
+      }
+
+      // Create new Howl instance
+      const howl = new Howl({
+        src: [audioPath],
+        format: ['mp3', 'wav', 'ogg'],
+        preload: true,
+        onload: () => {
+          setState(prev => ({ ...prev, isLoading: false }))
+        },
+        onloaderror: (_, error) => {
+          console.warn(`Failed to load audio: ${audioPath}`, error)
+          
+          // Try fallback if character data is available
+          if (character) {
+            const audioManager = AudioManager.getInstance()
+            if (audioManager.isSpeechSynthesisAvailable()) {
+              const audioText = generateAudioText(character)
+              audioManager.playFallbackAudio({
+                text: audioText,
+                language: 'th-TH',
+                rate: 0.7,
+                pitch: 1.0,
+                volume: 0.8
+              }).then(() => {
+                setState({
+                  isPlaying: false,
+                  isLoading: false,
+                  error: null,
+                })
+              }).catch(() => {
+                setState({
+                  isPlaying: false,
+                  isLoading: false,
+                  error: `Failed to load audio: ${audioPath}`,
+                })
+              })
+              return
+            }
+          }
+          
+          setState({
+            isPlaying: false,
+            isLoading: false,
+            error: `Failed to load audio: ${audioPath}`,
+          })
+        },
+        onplay: () => {
+          setState(prev => ({ ...prev, isPlaying: true, error: null }))
+        },
+        onend: () => {
+          setState(prev => ({ ...prev, isPlaying: false }))
+          currentHowl.current = null
+        },
+        onstop: () => {
+          setState(prev => ({ ...prev, isPlaying: false }))
+          currentHowl.current = null
+        },
+        onpause: () => {
+          setState(prev => ({ ...prev, isPlaying: false }))
+        },
+      })
+
+      currentHowl.current = howl
+
+      // Start playing
+      howl.play()
+
+    } catch (error) {
+      console.error('Error playing audio:', error)
+      setState({
+        isPlaying: false,
+        isLoading: false,
+        error: `Error playing audio: ${error}`,
+      })
+    }
+  }, [])
+
+  const stopAudio = useCallback(() => {
+    if (currentHowl.current) {
+      currentHowl.current.stop()
+      currentHowl.current = null
+    }
+    setState(prev => ({ ...prev, isPlaying: false }))
+  }, [])
+
+  return {
+    playAudio,
+    stopAudio,
+    isPlaying: state.isPlaying,
+    isLoading: state.isLoading,
+    error: state.error,
+  }
+}
+
+export default useAudio
