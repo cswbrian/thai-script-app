@@ -29,33 +29,33 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         relative bg-white rounded-lg border-2 transition-all duration-200 cursor-pointer
         hover:shadow-lg hover:scale-105 hover:border-blue-300 active:scale-95 touch-button
         ${isLearned ? 'border-green-300 bg-green-50' : 'border-gray-200 hover:border-gray-300'}
-        ${showProgress ? 'min-h-[120px]' : 'min-h-[100px]'}
+        ${showProgress ? 'min-h-[100px] sm:min-h-[120px]' : 'min-h-[80px] sm:min-h-[100px]'}
       `}
       onClick={onClick}
     >
       {/* Character Display */}
-      <div className="p-4 text-center">
+      <div className="p-2 sm:p-3 md:p-4 text-center">
         {/* Thai Character */}
-        <div className="mb-2">
-          <span className="text-3xl font-bold text-gray-900 thai-font">
+        <div className="mb-1 sm:mb-2">
+          <span className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 thai-font">
             {character.id}
           </span>
         </div>
 
         {/* Character Info */}
-        <div className="space-y-1">
-          <div className="text-sm font-medium text-gray-700">
+        <div className="space-y-0.5 sm:space-y-1">
+          <div className="text-xs sm:text-sm font-medium text-gray-700 truncate">
             {character.name}
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-gray-500 truncate">
             {character.pronunciation}
           </div>
           {character.meaning && (
-            <div className="text-xs text-gray-400">
+            <div className="text-xs text-gray-400 truncate">
               {character.meaning}
             </div>
           )}
-          <div className="text-xs text-blue-500 font-medium mt-1">
+          <div className="text-xs text-blue-500 font-medium mt-0.5 sm:mt-1">
             Click to learn
           </div>
         </div>
@@ -63,10 +63,10 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         {/* Audio Button */}
         <button
           onClick={handleAudioClick}
-          className="absolute top-2 right-2 p-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="absolute top-1 right-1 sm:top-2 sm:right-2 p-1 sm:p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors touch-button"
           aria-label={`Play pronunciation for ${character.name}`}
         >
-          <SpeakerWaveIcon className="h-4 w-4 text-gray-600" />
+          <SpeakerWaveIcon className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
         </button>
 
         {/* Group Color Indicator */}

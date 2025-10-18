@@ -21,18 +21,18 @@ const CharacterGroupTabs: React.FC<CharacterGroupTabsProps> = ({
     <button
       onClick={() => onGroupChange(group.id)}
       className={`
-        flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 touch-button
+        flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 md:px-4 py-2 rounded-lg transition-all duration-200 touch-button
         ${isActive 
           ? 'bg-white shadow-sm border border-gray-200' 
           : 'hover:bg-gray-50'
         }
       `}
     >
-      <div className={`w-3 h-3 rounded-full ${group.color}`}></div>
-      <span className={`text-sm font-medium ${isActive ? 'text-gray-900' : 'text-gray-600'}`}>
+      <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${group.color}`}></div>
+      <span className={`text-xs sm:text-sm font-medium ${isActive ? 'text-gray-900' : 'text-gray-600'} truncate`}>
         {group.name}
       </span>
-      <span className={`text-xs px-2 py-1 rounded-full ${
+      <span className={`text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full ${
         isActive ? 'bg-gray-100 text-gray-700' : 'bg-gray-200 text-gray-500'
       }`}>
         {group.characters.length}
@@ -41,11 +41,11 @@ const CharacterGroupTabs: React.FC<CharacterGroupTabsProps> = ({
   )
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       {/* Consonants Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Consonants</h3>
-        <div className="flex flex-wrap gap-2">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Consonants</h3>
+        <div className="flex flex-wrap gap-1 sm:gap-2">
           {consonantGroups.map((group) => (
             <TabButton
               key={group.id}
@@ -58,8 +58,8 @@ const CharacterGroupTabs: React.FC<CharacterGroupTabsProps> = ({
 
       {/* Vowels Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Vowels</h3>
-        <div className="flex flex-wrap gap-2">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Vowels</h3>
+        <div className="flex flex-wrap gap-1 sm:gap-2">
           {vowelGroups.map((group) => (
             <TabButton
               key={group.id}
@@ -72,8 +72,8 @@ const CharacterGroupTabs: React.FC<CharacterGroupTabsProps> = ({
 
       {/* Other Groups Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Tones & Symbols</h3>
-        <div className="flex flex-wrap gap-2">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Tones & Symbols</h3>
+        <div className="flex flex-wrap gap-1 sm:gap-2">
           {otherGroups.map((group) => (
             <TabButton
               key={group.id}
@@ -85,22 +85,22 @@ const CharacterGroupTabs: React.FC<CharacterGroupTabsProps> = ({
       </div>
 
       {/* Quick Stats */}
-      <div className="bg-gray-50 rounded-lg p-4">
-        <div className="grid grid-cols-3 gap-4 text-center">
+      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
           <div>
-            <div className="text-lg font-bold text-blue-600">
+            <div className="text-base sm:text-lg font-bold text-blue-600">
               {consonantGroups.reduce((sum, group) => sum + group.characters.length, 0)}
             </div>
             <div className="text-xs text-gray-600">Consonants</div>
           </div>
           <div>
-            <div className="text-lg font-bold text-purple-600">
+            <div className="text-base sm:text-lg font-bold text-purple-600">
               {vowelGroups.reduce((sum, group) => sum + group.characters.length, 0)}
             </div>
             <div className="text-xs text-gray-600">Vowels</div>
           </div>
           <div>
-            <div className="text-lg font-bold text-orange-600">
+            <div className="text-base sm:text-lg font-bold text-orange-600">
               {otherGroups.reduce((sum, group) => sum + group.characters.length, 0)}
             </div>
             <div className="text-xs text-gray-600">Others</div>
