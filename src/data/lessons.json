@@ -1,0 +1,229 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-1",
+      "title": "Basic Consonants - Mid Class",
+      "description": "Learn the fundamental mid-class consonants that form the foundation of Thai script",
+      "learningObjectives": [
+        "Recognize mid-class consonant characters",
+        "Understand pronunciation patterns",
+        "Practice character recognition"
+      ],
+      "characterIds": ["ก", "จ", "ด", "ต", "บ", "ป"],
+      "difficulty": "beginner",
+      "estimatedTime": "15-20 minutes",
+      "prerequisites": [],
+      "order": 1,
+      "category": "consonants",
+      "tags": ["mid-class", "basic", "foundation"]
+    },
+    {
+      "id": "lesson-2", 
+      "title": "Basic Consonants - High Class",
+      "description": "Master high-class consonants and their unique pronunciation characteristics",
+      "learningObjectives": [
+        "Distinguish high-class from mid-class consonants",
+        "Learn high-class pronunciation patterns",
+        "Practice character differentiation"
+      ],
+      "characterIds": ["ข", "ฉ", "ฐ", "ถ", "ผ", "ฝ"],
+      "difficulty": "beginner",
+      "estimatedTime": "15-20 minutes", 
+      "prerequisites": ["lesson-1"],
+      "order": 2,
+      "category": "consonants",
+      "tags": ["high-class", "basic", "pronunciation"]
+    },
+    {
+      "id": "lesson-3",
+      "title": "Basic Consonants - Low Class", 
+      "description": "Complete your consonant knowledge with low-class characters",
+      "learningObjectives": [
+        "Learn low-class consonant characters",
+        "Understand tone implications",
+        "Practice all consonant classes together"
+      ],
+      "characterIds": ["ค", "ง", "ช", "ซ", "ฌ", "ญ"],
+      "difficulty": "beginner",
+      "estimatedTime": "15-20 minutes",
+      "prerequisites": ["lesson-1", "lesson-2"],
+      "order": 3,
+      "category": "consonants", 
+      "tags": ["low-class", "basic", "tones"]
+    },
+    {
+      "id": "lesson-4",
+      "title": "Short Vowels",
+      "description": "Learn the essential short vowel sounds in Thai",
+      "learningObjectives": [
+        "Recognize short vowel characters",
+        "Understand vowel positioning",
+        "Practice vowel-consonant combinations"
+      ],
+      "characterIds": ["ะ", "ิ", "ึ", "ุ", "เ", "แ"],
+      "difficulty": "beginner",
+      "estimatedTime": "12-15 minutes",
+      "prerequisites": ["lesson-1"],
+      "order": 4,
+      "category": "vowels",
+      "tags": ["short-vowels", "basic", "positioning"]
+    },
+    {
+      "id": "lesson-5",
+      "title": "Long Vowels",
+      "description": "Master long vowel sounds and their extended pronunciation",
+      "learningObjectives": [
+        "Distinguish long from short vowels",
+        "Learn long vowel characters",
+        "Practice duration differences"
+      ],
+      "characterIds": ["า", "ี", "ื", "ู", "เ", "แ"],
+      "difficulty": "intermediate",
+      "estimatedTime": "12-15 minutes",
+      "prerequisites": ["lesson-4"],
+      "order": 5,
+      "category": "vowels",
+      "tags": ["long-vowels", "intermediate", "duration"]
+    },
+    {
+      "id": "lesson-6",
+      "title": "Tone Marks",
+      "description": "Understand how tone marks change syllable pronunciation",
+      "learningObjectives": [
+        "Learn the five tone marks",
+        "Understand tone rules",
+        "Practice tone recognition"
+      ],
+      "characterIds": ["่", "้", "๊", "๋", "็"],
+      "difficulty": "intermediate",
+      "estimatedTime": "10-12 minutes",
+      "prerequisites": ["lesson-1", "lesson-2", "lesson-3"],
+      "order": 6,
+      "category": "tones",
+      "tags": ["tone-marks", "intermediate", "pronunciation"]
+    },
+    {
+      "id": "lesson-7",
+      "title": "Mixed Practice - Consonants",
+      "description": "Review and practice all consonant classes together",
+      "learningObjectives": [
+        "Review all consonant classes",
+        "Practice character recognition",
+        "Build confidence with mixed content"
+      ],
+      "characterIds": ["ก", "ข", "ค", "จ", "ฉ", "ช", "ด", "ต", "ท", "บ", "ป", "ผ"],
+      "difficulty": "intermediate",
+      "estimatedTime": "20-25 minutes",
+      "prerequisites": ["lesson-1", "lesson-2", "lesson-3"],
+      "order": 7,
+      "category": "review",
+      "tags": ["mixed", "review", "consonants"]
+    },
+    {
+      "id": "lesson-8",
+      "title": "Mixed Practice - Vowels & Tones",
+      "description": "Combine vowels and tone marks for comprehensive practice",
+      "learningObjectives": [
+        "Practice vowel-tone combinations",
+        "Review all vowel types",
+        "Master tone applications"
+      ],
+      "characterIds": ["ะ", "า", "ิ", "ี", "ึ", "ื", "ุ", "ู", "่", "้", "๊", "๋"],
+      "difficulty": "intermediate",
+      "estimatedTime": "18-22 minutes",
+      "prerequisites": ["lesson-4", "lesson-5", "lesson-6"],
+      "order": 8,
+      "category": "review",
+      "tags": ["mixed", "review", "vowels-tones"]
+    },
+    {
+      "id": "lesson-9",
+      "title": "Advanced Characters",
+      "description": "Learn additional consonants and special characters",
+      "learningObjectives": [
+        "Master remaining consonant characters",
+        "Learn special symbols",
+        "Practice complex character recognition"
+      ],
+      "characterIds": ["ย", "ร", "ล", "ว", "ส", "ห", "อ", "ฮ", "์", "ๆ"],
+      "difficulty": "advanced",
+      "estimatedTime": "15-18 minutes",
+      "prerequisites": ["lesson-7"],
+      "order": 9,
+      "category": "advanced",
+      "tags": ["advanced", "special", "complex"]
+    },
+    {
+      "id": "lesson-10",
+      "title": "Complete Review",
+      "description": "Comprehensive review of all Thai script characters",
+      "learningObjectives": [
+        "Review all learned characters",
+        "Practice comprehensive recognition",
+        "Prepare for advanced learning"
+      ],
+      "characterIds": ["ก", "ข", "ค", "ง", "จ", "ฉ", "ช", "ซ", "ฌ", "ญ", "ด", "ต", "ท", "น", "บ", "ป", "ผ", "ฝ", "พ", "ฟ", "ภ", "ม", "ย", "ร", "ล", "ว", "ส", "ห", "อ", "ฮ", "ะ", "า", "ิ", "ี", "ึ", "ื", "ุ", "ู", "่", "้", "๊", "๋", "็", "์", "ๆ"],
+      "difficulty": "advanced",
+      "estimatedTime": "25-30 minutes",
+      "prerequisites": ["lesson-8", "lesson-9"],
+      "order": 10,
+      "category": "review",
+      "tags": ["comprehensive", "review", "mastery"]
+    }
+  ],
+  "categories": {
+    "consonants": {
+      "name": "Consonants",
+      "description": "Thai consonant characters organized by tone class",
+      "color": "blue",
+      "icon": "consonant"
+    },
+    "vowels": {
+      "name": "Vowels", 
+      "description": "Thai vowel characters and combinations",
+      "color": "purple",
+      "icon": "vowel"
+    },
+    "tones": {
+      "name": "Tone Marks",
+      "description": "Tone marks that modify syllable pronunciation",
+      "color": "orange", 
+      "icon": "tone"
+    },
+    "review": {
+      "name": "Review & Practice",
+      "description": "Mixed practice and review lessons",
+      "color": "green",
+      "icon": "review"
+    },
+    "advanced": {
+      "name": "Advanced",
+      "description": "Advanced characters and complex combinations",
+      "color": "red",
+      "icon": "advanced"
+    }
+  },
+  "difficultyLevels": {
+    "beginner": {
+      "name": "Beginner",
+      "description": "Basic characters and simple concepts",
+      "color": "green",
+      "minScore": 0,
+      "maxScore": 70
+    },
+    "intermediate": {
+      "name": "Intermediate", 
+      "description": "Mixed content and moderate complexity",
+      "color": "yellow",
+      "minScore": 70,
+      "maxScore": 85
+    },
+    "advanced": {
+      "name": "Advanced",
+      "description": "Complex characters and comprehensive practice",
+      "color": "red",
+      "minScore": 85,
+      "maxScore": 100
+    }
+  }
+}
