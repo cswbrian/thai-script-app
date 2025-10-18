@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+/* Import Thai fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&family=Sarabun:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Base styles for Thai Script Learning PWA */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-dark-900 text-white min-h-screen;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Thai character display */
+  .thai-character {
+    @apply font-thai text-thai-lg leading-none;
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+  
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    @apply min-h-touch min-w-touch;
+  }
+  
+  /* Mobile-first responsive container */
+  .container-mobile {
+    @apply w-full max-w-sm mx-auto px-4 sm:max-w-md sm:px-6 md:max-w-2xl md:px-8 lg:max-w-4xl lg:px-12;
+  }
+}
+
+/* Component styles for Thai Script Learning */
+@layer components {
+  /* Character card component */
+  .character-card {
+    @apply bg-white rounded-xl shadow-lg p-6 touch-target cursor-pointer;
+    @apply hover:shadow-xl transition-all duration-200;
+    @apply active:scale-95 transform;
+  }
+  
+  .character-card.learned {
+    @apply bg-thai-green/10 border-2 border-thai-green;
+  }
+  
+  .character-card.learning {
+    @apply bg-thai-blue/10 border-2 border-thai-blue;
+  }
+  
+  .character-card.unlearned {
+    @apply bg-gray-100 border-2 border-gray-300;
+  }
+  
+  /* Button components */
+  .btn-primary {
+    @apply bg-thai-blue text-white px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-thai-blue/90 active:scale-95 transition-all duration-200;
+    @apply touch-target flex items-center justify-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-gray-300 active:scale-95 transition-all duration-200;
+    @apply touch-target flex items-center justify-center gap-2;
+  }
+  
+  .btn-success {
+    @apply bg-thai-green text-white px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-thai-green/90 active:scale-95 transition-all duration-200;
+    @apply touch-target flex items-center justify-center gap-2;
+  }
+  
+  /* Progress indicators */
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2;
+  }
+  
+  .progress-fill {
+    @apply bg-thai-blue h-2 rounded-full transition-all duration-300;
+  }
+  
+  /* Grid layouts for character display */
+  .character-grid {
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4;
+  }
+  
+  .character-grid-mobile {
+    @apply grid grid-cols-3 gap-3;
+  }
+  
+  /* Navigation tabs */
+  .nav-tab {
+    @apply px-4 py-2 text-sm font-medium rounded-lg;
+    @apply hover:bg-gray-700 transition-colors duration-200;
+    @apply touch-target flex items-center justify-center;
+  }
+  
+  .nav-tab.active {
+    @apply bg-thai-blue text-white;
+  }
+  
+  /* Audio controls */
+  .audio-control {
+    @apply bg-thai-gold text-dark-900 px-4 py-2 rounded-lg;
+    @apply hover:bg-thai-gold/90 active:scale-95 transition-all duration-200;
+    @apply touch-target flex items-center justify-center gap-2;
+  }
+}
+
+/* Utility classes for Thai Script Learning */
+@layer utilities {
+  /* Thai character sizing utilities */
+  .text-thai-xs { @apply text-thai-sm; }
+  .text-thai-sm { @apply text-thai-sm; }
+  .text-thai-md { @apply text-thai-md; }
+  .text-thai-lg { @apply text-thai-lg; }
+  .text-thai-xl { @apply text-thai-xl; }
+  .text-thai-2xl { @apply text-thai-2xl; }
+  
+  /* Touch-friendly spacing */
+  .space-touch { @apply space-y-4; }
+  .space-touch-sm { @apply space-y-2; }
+  .space-touch-lg { @apply space-y-6; }
+  
+  /* Mobile-first responsive text */
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+  }
+  
+  /* Safe area for mobile devices */
+  .safe-area-top { padding-top: env(safe-area-inset-top); }
+  .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .safe-area-left { padding-left: env(safe-area-inset-left); }
+  .safe-area-right { padding-right: env(safe-area-inset-right); }
+  
+  /* Dark mode overrides */
+  @media (prefers-color-scheme: light) {
+    .character-card.unlearned {
+      @apply bg-white border-gray-200;
+    }
+  }
+}
+
+/* Custom animations for Thai script learning */
+@keyframes thai-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes thai-bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.animate-thai-fade-in {
+  animation: thai-fade-in 0.6s ease-out;
+}
+
+.animate-thai-bounce {
+  animation: thai-bounce 1s ease-in-out;
+}
