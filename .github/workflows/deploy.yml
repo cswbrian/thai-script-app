@@ -17,7 +17,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '22'
         cache: 'npm'
         
     - name: Install dependencies
@@ -34,14 +34,19 @@ jobs:
           exit 1
         fi
         
+        # List all files in dist for debugging
+        echo "Files in dist directory:"
+        ls -la dist/
+        
         # Check for essential PWA files
         if [ ! -f "dist/index.html" ]; then
           echo "Build failed: index.html not found"
           exit 1
         fi
         
-        if [ ! -f "dist/manifest.json" ]; then
-          echo "Build failed: manifest.json not found"
+        # Check for manifest files (Vite PWA plugin generates both)
+        if [ ! -f "dist/manifest.json" ] && [ ! -f "dist/manifest.webmanifest" ]; then
+          echo "Build failed: No manifest file found (checked manifest.json and manifest.webmanifest)"
           exit 1
         fi
         
