@@ -138,6 +138,10 @@
   - [ ] 7.6 Add progressive difficulty (adding more characters over time)
   - [ ] 7.7 Create test result display with Framer Motion animations
   - [ ] 7.8 Implement quiz retry and review functionality
+  - [ ] 7.9 Add pronunciation matching quiz (audio to character)
+  - [ ] 7.10 Implement character recognition speed tests
+  - [ ] 7.11 Create mixed-mode quizzes (visual + audio + writing)
+  - [ ] 7.12 Add adaptive quiz difficulty based on user performance
 
 - [ ] 8.0 Progress Tracking and Local Storage
   - [ ] 8.1 Create useProgress custom React hook with IndexedDB integration
@@ -148,6 +152,10 @@
   - [ ] 8.6 Implement progress indicators using Tailwind progress bars
   - [ ] 8.7 Add data migration strategy for future updates
   - [ ] 8.8 Create data export/import functionality for backup
+  - [ ] 8.9 Implement learning analytics and performance insights
+  - [ ] 8.10 Add character mastery tracking (weak/strong areas)
+  - [ ] 8.11 Create personalized learning recommendations
+  - [ ] 8.12 Implement progress sharing and achievement badges
 
 - [ ] 9.0 Mobile-First UI and Responsive Design
   - [ ] 9.1 Implement touch-friendly components with Tailwind min-h-[44px] classes
@@ -190,3 +198,13 @@
   - [ ] 12.8 Document deployment process and troubleshooting guide
   - [ ] 12.9 Test end-to-end user journey from installation to learning completion
   - [ ] 12.10 Create demo data and sample lessons for immediate testing
+
+- [ ] 13.0 Duolingo-like Learning Experience
+  - [ ] 13.1 Implement spaced repetition algorithm for character review
+  - [ ] 13.2 Create adaptive difficulty system based on user performance
+  - [ ] 13.3 Add streak tracking and daily learning goals
+  - [ ] 13.4 Implement mastery levels (Beginner, Intermediate, Advanced)
+  - [ ] 13.5 Create randomized practice sessions with mixed character types
+  - [ ] 13.6 Add "Practice Weak Areas" feature based on quiz performance
+  - [ ] 13.7 Implement "Review Due" notifications and scheduling
+  - [ ] 13.8 Create learning streak visualization and rewards
