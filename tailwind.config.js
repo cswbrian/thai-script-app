@@ -103,7 +103,7 @@ export default {
       },
       // Thai font family
       fontFamily: {
-        'thai': ['Noto Sans Thai', 'Sarabun', 'Prompt', 'system-ui', 'sans-serif'],
+        'thai': ['Sarabun', 'Noto Sans Thai', 'Prompt', 'system-ui', 'sans-serif'],
         'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
     },

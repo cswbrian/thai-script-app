@@ -38,7 +38,7 @@ export class AudioManager {
 
       const utterance = new SpeechSynthesisUtterance(options.text)
       utterance.lang = options.language || 'th-TH'
-      utterance.rate = options.rate || 0.8
+      utterance.rate = options.rate || 0.6
       utterance.pitch = options.pitch || 1.0
       utterance.volume = options.volume || 1.0
 
@@ -86,9 +86,9 @@ export const generateAudioText = (character: {
   pronunciation: string
   meaning?: string
 }): string => {
-  // Play just the character name and pronunciation
-  // Format: "cho chan, ch"
-  return `${character.name}, ${character.pronunciation}`
+  // Play just the character name
+  // Format: "ko kai"
+  return character.name
 }
 
 /**

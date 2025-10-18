@@ -50,8 +50,8 @@ export const useAudio = (): UseAudioReturn => {
           const audioText = generateAudioText(character)
           await audioManager.playFallbackAudio({
             text: audioText,
-            language: 'en-US', // Use English for better pronunciation of Thai names
-            rate: 0.8,
+            language: 'th-TH', // Use Thai for proper pronunciation
+            rate: 0.6,
             pitch: 1.0,
             volume: 0.9
           })
@@ -84,22 +84,10 @@ export const useAudio = (): UseAudioReturn => {
               const audioText = generateAudioText(character)
               audioManager.playFallbackAudio({
                 text: audioText,
-                language: 'en-US', // Use English for better pronunciation of Thai names
-                rate: 0.8,
+                language: 'th-TH', // Use Thai for proper pronunciation
+                rate: 0.6,
                 pitch: 1.0,
-                volume: 0.9
-              }).then(() => {
-                setState({
-                  isPlaying: false,
-                  isLoading: false,
-                  error: null,
-                })
-              }).catch(() => {
-                setState({
-                  isPlaying: false,
-                  isLoading: false,
-                  error: `Failed to load audio: ${audioPath}`,
-                })
+                volume: 1.0
               })
               return
             }
