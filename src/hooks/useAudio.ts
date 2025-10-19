@@ -57,9 +57,10 @@ export const useAudio = (): UseAudioReturn => {
         setState(prev => ({ ...prev, isLoading: false, error: 'Audio loading timeout' }))
       }, 5000) // 5 second timeout
 
-      // Check if audio file exists
+      // Check if audio file exists and is a valid audio file
       const audioExists = await checkAudioFileExists(audioPath)
       
+      // If no audio file exists and we have character data, use TTS fallback
       if (!audioExists && character) {
         // Fallback to speech synthesis
         const audioManager = AudioManager.getInstance()

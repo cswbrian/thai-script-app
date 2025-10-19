@@ -21,6 +21,126 @@ export interface CharacterGroup {
   description: string
   characters: ThaiCharacter[]
   color: string
+  classGroups?: Map<string, ThaiCharacter[]>
+}
+
+// Character grouping by pronunciation while maintaining category structure
+export const getCharacterGroupsByPronunciation = (): CharacterGroup[] => {
+  const thaiCharacters = thaiCharactersData as any
+  
+  const groups: CharacterGroup[] = []
+  const colors = [
+    'bg-blue-500', 'bg-red-500', 'bg-green-500', 'bg-purple-500', 
+    'bg-indigo-500', 'bg-pink-500', 'bg-orange-500', 'bg-yellow-500',
+    'bg-teal-500', 'bg-cyan-500', 'bg-lime-500', 'bg-emerald-500'
+  ]
+  
+  let colorIndex = 0
+
+  // Process consonants by pronunciation and class
+  const consonantPronunciationGroups = new Map<string, Map<string, ThaiCharacter[]>>()
+  thaiCharacters.consonants.forEach((character: ThaiCharacter) => {
+    if (!character.pronunciation || !character.class) return
+    
+    const pronunciation = character.pronunciation.toLowerCase()
+    const consonantClass = character.class
+    
+    if (!consonantPronunciationGroups.has(pronunciation)) {
+      consonantPronunciationGroups.set(pronunciation, new Map())
+    }
+    
+    const classGroups = consonantPronunciationGroups.get(pronunciation)!
+    if (!classGroups.has(consonantClass)) {
+      classGroups.set(consonantClass, [])
+    }
+    
+    classGroups.get(consonantClass)!.push(character)
+  })
+
+  consonantPronunciationGroups.forEach((classGroups, pronunciation) => {
+    // Collect all characters for this pronunciation
+    const allCharacters: ThaiCharacter[] = []
+    const classOrder = ['mid', 'high', 'low']
+    
+    classOrder.forEach(consonantClass => {
+      const characters = classGroups.get(consonantClass)
+      if (characters && characters.length > 0) {
+        allCharacters.push(...characters)
+      }
+    })
+    
+    if (allCharacters.length > 0) {
+      groups.push({
+        id: `consonants-pronunciation-${pronunciation}`,
+        name: `"${pronunciation}" sound`,
+        description: `Consonants that make the "${pronunciation}" sound`,
+        characters: allCharacters.sort((a, b) => a.name.localeCompare(b.name)),
+        color: colors[colorIndex % colors.length],
+        // Store class information for rendering
+        classGroups: classGroups
+      })
+      colorIndex++
+    }
+  })
+
+  // Process vowels by pronunciation
+  const vowelPronunciationGroups = new Map<string, ThaiCharacter[]>()
+  thaiCharacters.vowels.forEach((character: ThaiCharacter) => {
+    if (!character.pronunciation) return
+    
+    const pronunciation = character.pronunciation.toLowerCase()
+    if (!vowelPronunciationGroups.has(pronunciation)) {
+      vowelPronunciationGroups.set(pronunciation, [])
+    }
+    vowelPronunciationGroups.get(pronunciation)!.push(character)
+  })
+
+  vowelPronunciationGroups.forEach((characters, pronunciation) => {
+    groups.push({
+      id: `vowels-pronunciation-${pronunciation}`,
+      name: `"${pronunciation}" sound`,
+      description: `Vowels that make the "${pronunciation}" sound`,
+      characters: characters.sort((a, b) => a.name.localeCompare(b.name)),
+      color: colors[colorIndex % colors.length]
+    })
+    colorIndex++
+  })
+
+  // Process tone marks by pronunciation
+  const toneMarkPronunciationGroups = new Map<string, ThaiCharacter[]>()
+  thaiCharacters.toneMarks.forEach((character: ThaiCharacter) => {
+    if (!character.pronunciation) return
+    
+    const pronunciation = character.pronunciation.toLowerCase()
+    if (!toneMarkPronunciationGroups.has(pronunciation)) {
+      toneMarkPronunciationGroups.set(pronunciation, [])
+    }
+    toneMarkPronunciationGroups.get(pronunciation)!.push(character)
+  })
+
+  toneMarkPronunciationGroups.forEach((characters, pronunciation) => {
+    groups.push({
+      id: `tone-marks-pronunciation-${pronunciation}`,
+      name: `"${pronunciation}" sound`,
+      description: `Tone marks that make the "${pronunciation}" sound`,
+      characters: characters.sort((a, b) => a.name.localeCompare(b.name)),
+      color: colors[colorIndex % colors.length]
+    })
+    colorIndex++
+  })
+
+  // Sort groups by category first, then by pronunciation
+  return groups.sort((a, b) => {
+    const categoryOrder = { consonants: 0, vowels: 1, 'tone-marks': 2 }
+    const aCategory = a.id.split('-')[0]
+    const bCategory = b.id.split('-')[0]
+    
+    if (categoryOrder[aCategory as keyof typeof categoryOrder] !== categoryOrder[bCategory as keyof typeof categoryOrder]) {
+      return categoryOrder[aCategory as keyof typeof categoryOrder] - categoryOrder[bCategory as keyof typeof categoryOrder]
+    }
+    
+    return a.name.localeCompare(b.name)
+  })
 }
 
 // Character grouping logic
