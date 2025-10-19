@@ -37,6 +37,8 @@ export const useAudio = (): UseAudioReturn => {
   }, [])
 
   const playAudio = useCallback(async (audioPath: string, character?: ThaiCharacter): Promise<void> => {
+    let loadingTimeout: number | null = null
+    
     try {
       // Stop any currently playing audio
       if (currentHowl.current) {
@@ -49,6 +51,11 @@ export const useAudio = (): UseAudioReturn => {
         isLoading: true,
         error: null,
       })
+
+      // Set a timeout to prevent infinite loading state
+      loadingTimeout = setTimeout(() => {
+        setState(prev => ({ ...prev, isLoading: false, error: 'Audio loading timeout' }))
+      }, 5000) // 5 second timeout
 
       // Check if audio file exists
       const audioExists = await checkAudioFileExists(audioPath)
@@ -83,9 +90,11 @@ export const useAudio = (): UseAudioReturn => {
         preload: true,
         html5: false, // Use Web Audio API for better performance
         onload: () => {
+          if (loadingTimeout) clearTimeout(loadingTimeout)
           setState(prev => ({ ...prev, isLoading: false }))
         },
         onloaderror: (_, error) => {
+          if (loadingTimeout) clearTimeout(loadingTimeout)
           console.warn(`Failed to load audio: ${audioPath}`, error)
           
           // Try fallback if character data is available
@@ -111,7 +120,8 @@ export const useAudio = (): UseAudioReturn => {
           })
         },
         onplay: () => {
-          setState(prev => ({ ...prev, isPlaying: true, error: null }))
+          if (loadingTimeout) clearTimeout(loadingTimeout)
+          setState(prev => ({ ...prev, isPlaying: true, isLoading: false, error: null }))
         },
         onend: () => {
           setState(prev => ({ ...prev, isPlaying: false, isLoading: false }))
@@ -132,6 +142,7 @@ export const useAudio = (): UseAudioReturn => {
       howl.play()
 
     } catch (error) {
+      if (loadingTimeout) clearTimeout(loadingTimeout)
       console.error('Error playing audio:', error)
       setState({
         isPlaying: false,
