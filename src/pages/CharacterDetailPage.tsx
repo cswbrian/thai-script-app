@@ -60,7 +60,7 @@ const CharacterDetailPage: React.FC = () => {
           <div className="bg-gray-50 rounded-2xl p-12 mb-8 text-center">
             {/* Large Character Display */}
             <div className="mb-8">
-              <span className="text-9xl font-bold text-gray-900 thai-font">
+              <span className="text-9xl font-bold text-gray-900 thai-character">
                 {character.id}
               </span>
             </div>

@@ -66,7 +66,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [results, setResults] = useState<QuizResult[]>([])
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
-  const [showAnswer, setShowAnswer] = useState(false)
+  const [isCurrentQuestionCorrect, setIsCurrentQuestionCorrect] = useState<boolean | null>(null)
 
   // Generate quiz questions
   useEffect(() => {
@@ -76,7 +76,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       setCurrentQuestionIndex(0)
       setResults([])
       setSelectedAnswer(null)
-      setShowAnswer(false)
+      setIsCurrentQuestionCorrect(null)
     }
   }, [isOpen, config])
 
@@ -109,8 +109,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
           ...baseQuestion,
           question: `What is the pronunciation of this character?`,
           correctAnswer: character.pronunciation,
-          options: generateRecognitionOptions(character),
-          explanation: `The character "${character.id}" is pronounced "${character.pronunciation}"`
+          options: generateRecognitionOptions(character)
         }
 
       case 'pronunciation':
@@ -118,8 +117,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
           ...baseQuestion,
           question: `Which character matches this pronunciation: "${character.pronunciation}"?`,
           correctAnswer: character.id,
-          options: generatePronunciationOptions(character),
-          explanation: `The pronunciation "${character.pronunciation}" corresponds to the character "${character.id}"`
+          options: generatePronunciationOptions(character)
         }
 
       case 'audio-to-character':
@@ -128,8 +126,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
           question: `Listen to the pronunciation and select the correct character`,
           correctAnswer: character.id,
           characterOptions: generateCharacterOptions(character),
-          audioText: `${character.name}, pronounced ${character.pronunciation}`,
-          explanation: `The pronunciation "${character.pronunciation}" corresponds to the character "${character.id}"`
+          audioText: `${character.name}, pronounced ${character.pronunciation}`
         }
 
       default:
@@ -195,23 +192,27 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     const isCorrect = answer === currentQuestion.correctAnswer
     
     setSelectedAnswer(answer)
-    setShowAnswer(true)
-
-    const result: QuizResult = {
-      questionId: currentQuestion.id,
-      userAnswer: answer,
-      isCorrect,
-      attempts: 1
+    setIsCurrentQuestionCorrect(isCorrect)
+    
+    // Show immediate feedback for both correct and incorrect answers
+    if (isCorrect) {
+      const result: QuizResult = {
+        questionId: currentQuestion.id,
+        userAnswer: answer,
+        isCorrect,
+        attempts: 1
+      }
+      
+      setResults(prev => [...prev, result])
     }
-
-    setResults(prev => [...prev, result])
+    // For incorrect answers, we'll show feedback but allow immediate retry
   }
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1)
       setSelectedAnswer(null)
-      setShowAnswer(false)
+      setIsCurrentQuestionCorrect(null)
     } else {
       handleQuizComplete()
     }
@@ -221,7 +222,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(prev => prev - 1)
       setSelectedAnswer(null)
-      setShowAnswer(false)
+      setIsCurrentQuestionCorrect(null)
     }
   }
 
@@ -302,7 +303,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                   {/* Character Display */}
                   {currentQuestion.character && currentQuestion.type !== 'audio-to-character' && (
                     <div className="mb-4">
-                      <div className="text-6xl font-bold text-gray-900 thai-font mb-2">
+                      <div className="text-9xl font-bold text-gray-900 thai-character mb-2">
                         {currentQuestion.character.id}
                       </div>
                       {currentQuestion.audioPath && (
@@ -325,14 +326,14 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                     currentQuestion.characterOptions.map((character, index) => {
                       const isSelected = selectedAnswer === character.id
                       const isCorrect = character.id === currentQuestion.correctAnswer
-                      const showCorrect = showAnswer && isCorrect
-                      const showIncorrect = showAnswer && isSelected && !isCorrect
+                      const showCorrect = isCurrentQuestionCorrect === true && isCorrect
+                      const showIncorrect = isCurrentQuestionCorrect === false && isSelected && !isCorrect
                       
                       return (
                         <button
                           key={index}
-                          onClick={() => !showAnswer && handleAnswerSelect(character.id)}
-                          disabled={showAnswer}
+                          onClick={() => handleAnswerSelect(character.id)}
+                          disabled={isCurrentQuestionCorrect === true}
                           className={`p-3 text-center border-2 rounded-lg transition-colors touch-button ${
                             showCorrect 
                               ? 'border-green-500 bg-green-50' 
@@ -341,21 +342,24 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                                 : isSelected 
                                   ? 'border-blue-500 bg-blue-50' 
                                   : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50'
-                          } ${showAnswer ? 'cursor-default' : 'cursor-pointer'}`}
+                          } ${isCurrentQuestionCorrect === true ? 'cursor-default' : 'cursor-pointer'}`}
                         >
-                          <div className="text-2xl font-bold text-gray-900 thai-font mb-1">
+                          <div className="text-3xl font-bold text-gray-900 thai-character mb-1">
                             {character.id}
                           </div>
                           <div className="text-xs text-gray-600 truncate">
                             {character.name}
                           </div>
-                          {showAnswer && (
+                          {isCurrentQuestionCorrect === true && (
                             <div className="mt-1">
                               {showCorrect ? (
                                 <CheckCircleIcon className="h-5 w-5 text-green-500 mx-auto" />
-                              ) : showIncorrect ? (
-                                <XCircleIcon className="h-5 w-5 text-red-500 mx-auto" />
                               ) : null}
+                            </div>
+                          )}
+                          {isCurrentQuestionCorrect === false && isSelected && (
+                            <div className="mt-1">
+                              <XCircleIcon className="h-5 w-5 text-red-500 mx-auto" />
                             </div>
                           )}
                         </button>
@@ -366,14 +370,14 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                     currentQuestion.options?.map((option, index) => {
                       const isSelected = selectedAnswer === option
                       const isCorrect = option === currentQuestion.correctAnswer
-                      const showCorrect = showAnswer && isCorrect
-                      const showIncorrect = showAnswer && isSelected && !isCorrect
+                      const showCorrect = isCurrentQuestionCorrect === true && isCorrect
+                      const showIncorrect = isCurrentQuestionCorrect === false && isSelected && !isCorrect
                       
                       return (
                         <button
                           key={index}
-                          onClick={() => !showAnswer && handleAnswerSelect(option)}
-                          disabled={showAnswer}
+                          onClick={() => handleAnswerSelect(option)}
+                          disabled={isCurrentQuestionCorrect === true}
                           className={`p-4 text-center border-2 rounded-lg transition-colors touch-button ${
                             showCorrect 
                               ? 'border-green-500 bg-green-50' 
@@ -382,18 +386,21 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                                 : isSelected 
                                   ? 'border-blue-500 bg-blue-50' 
                                   : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50'
-                          } ${showAnswer ? 'cursor-default' : 'cursor-pointer'}`}
+                          } ${isCurrentQuestionCorrect === true ? 'cursor-default' : 'cursor-pointer'}`}
                         >
                           <div className="text-lg font-medium text-gray-900">
                             {option}
                           </div>
-                          {showAnswer && (
+                          {isCurrentQuestionCorrect === true && (
                             <div className="mt-1">
                               {showCorrect ? (
                                 <CheckCircleIcon className="h-5 w-5 text-green-500 mx-auto" />
-                              ) : showIncorrect ? (
-                                <XCircleIcon className="h-5 w-5 text-red-500 mx-auto" />
                               ) : null}
+                            </div>
+                          )}
+                          {isCurrentQuestionCorrect === false && isSelected && (
+                            <div className="mt-1">
+                              <XCircleIcon className="h-5 w-5 text-red-500 mx-auto" />
                             </div>
                           )}
                         </button>
@@ -402,25 +409,12 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                   )}
                 </div>
 
-                {/* Answer Explanation */}
-                {showAnswer && currentQuestion.explanation && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                    <div className="flex items-start space-x-2">
-                      <div className="flex-shrink-0">
-                        {selectedAnswer === currentQuestion.correctAnswer ? (
-                          <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                        ) : (
-                          <XCircleIcon className="h-5 w-5 text-red-500" />
-                        )}
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium text-gray-900 mb-1">
-                          {selectedAnswer === currentQuestion.correctAnswer ? 'Correct!' : 'Incorrect'}
-                        </div>
-                        <div className="text-sm text-gray-700">
-                          {currentQuestion.explanation}
-                        </div>
-                      </div>
+                {/* Feedback Message for Incorrect Answers */}
+                {isCurrentQuestionCorrect === false && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                    <div className="flex items-center justify-center space-x-2">
+                      <XCircleIcon className="h-5 w-5 text-red-500" />
+                      <span className="text-sm font-medium text-red-700">Try again!</span>
                     </div>
                   </div>
                 )}
@@ -438,7 +432,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
                   
                   <button
                     onClick={handleNextQuestion}
-                    disabled={currentQuestionIndex === questions.length - 1}
+                    disabled={currentQuestionIndex === questions.length - 1 || isCurrentQuestionCorrect !== true}
                     className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Next

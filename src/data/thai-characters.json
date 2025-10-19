@@ -8,7 +8,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "chicken",
-      "audioPath": "/audio/consonants/ก.mp3"
+      "audioPath": "/audio/consonants/ก_ko_kai.mp3"
     },
     {
       "id": "ข",
@@ -18,7 +18,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "egg",
-      "audioPath": "/audio/consonants/ข.mp3"
+      "audioPath": "/audio/consonants/ข_kho_khai.mp3"
     },
     {
       "id": "ฃ",
@@ -28,7 +28,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "bottle",
-      "audioPath": "/audio/consonants/ฃ.mp3"
+      "audioPath": "/audio/consonants/ฃ_kho_khuat.mp3"
     },
     {
       "id": "ค",
@@ -38,7 +38,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "buffalo",
-      "audioPath": "/audio/consonants/ค.mp3"
+      "audioPath": "/audio/consonants/ค_kho_khwai.mp3"
     },
     {
       "id": "ฅ",
@@ -48,7 +48,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "person",
-      "audioPath": "/audio/consonants/ฅ.mp3"
+      "audioPath": "/audio/consonants/ฅ_kho_khon.mp3"
     },
     {
       "id": "ฆ",
@@ -58,7 +58,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "bell",
-      "audioPath": "/audio/consonants/ฆ.mp3"
+      "audioPath": "/audio/consonants/ฆ_kho_rakang.mp3"
     },
     {
       "id": "ง",
@@ -68,7 +68,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "snake",
-      "audioPath": "/audio/consonants/ง.mp3"
+      "audioPath": "/audio/consonants/ง_ngo_nguu.mp3"
     },
     {
       "id": "จ",
@@ -78,7 +78,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "plate",
-      "audioPath": "/audio/consonants/จ.mp3"
+      "audioPath": "/audio/consonants/จ_cho_chan.mp3"
     },
     {
       "id": "ฉ",
@@ -88,7 +88,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "cymbal",
-      "audioPath": "/audio/consonants/ฉ.mp3"
+      "audioPath": "/audio/consonants/ฉ_cho_ching.mp3"
     },
     {
       "id": "ช",
@@ -98,7 +98,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "elephant",
-      "audioPath": "/audio/consonants/ช.mp3"
+      "audioPath": "/audio/consonants/ช_cho_chang.mp3"
     },
     {
       "id": "ซ",
@@ -108,7 +108,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "chain",
-      "audioPath": "/audio/consonants/ซ.mp3"
+      "audioPath": "/audio/consonants/ซ_so_so.mp3"
     },
     {
       "id": "ฌ",
@@ -118,7 +118,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "tree",
-      "audioPath": "/audio/consonants/ฌ.mp3"
+      "audioPath": "/audio/consonants/ฌ_cho_che.mp3"
     },
     {
       "id": "ญ",
@@ -128,7 +128,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "woman",
-      "audioPath": "/audio/consonants/ญ.mp3"
+      "audioPath": "/audio/consonants/ญ_yo_ying.mp3"
     },
     {
       "id": "ฎ",
@@ -138,7 +138,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "crown",
-      "audioPath": "/audio/consonants/ฎ.mp3"
+      "audioPath": "/audio/consonants/ฎ_do_chada.mp3"
     },
     {
       "id": "ฏ",
@@ -148,7 +148,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "goad",
-      "audioPath": "/audio/consonants/ฏ.mp3"
+      "audioPath": "/audio/consonants/ฏ_to_patak.mp3"
     },
     {
       "id": "ฐ",
@@ -158,7 +158,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "base",
-      "audioPath": "/audio/consonants/ฐ.mp3"
+      "audioPath": "/audio/consonants/ฐ_tho_than.mp3"
     },
     {
       "id": "ฑ",
@@ -168,7 +168,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "montho",
-      "audioPath": "/audio/consonants/ฑ.mp3"
+      "audioPath": "/audio/consonants/ฑ_tho_montho.mp3"
     },
     {
       "id": "ฒ",
@@ -178,7 +178,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "elder",
-      "audioPath": "/audio/consonants/ฒ.mp3"
+      "audioPath": "/audio/consonants/ฒ_tho_phuthao.mp3"
     },
     {
       "id": "ณ",
@@ -188,7 +188,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "monk",
-      "audioPath": "/audio/consonants/ณ.mp3"
+      "audioPath": "/audio/consonants/ณ_no_nen.mp3"
     },
     {
       "id": "ด",
@@ -198,7 +198,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "child",
-      "audioPath": "/audio/consonants/ด.mp3"
+      "audioPath": "/audio/consonants/ด_do_dek.mp3"
     },
     {
       "id": "ต",
@@ -208,7 +208,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "turtle",
-      "audioPath": "/audio/consonants/ต.mp3"
+      "audioPath": "/audio/consonants/ต_to_tao.mp3"
     },
     {
       "id": "ถ",
@@ -218,7 +218,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "sack",
-      "audioPath": "/audio/consonants/ถ.mp3"
+      "audioPath": "/audio/consonants/ถ_tho_thung.mp3"
     },
     {
       "id": "ท",
@@ -228,7 +228,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "soldier",
-      "audioPath": "/audio/consonants/ท.mp3"
+      "audioPath": "/audio/consonants/ท_tho_thahan.mp3"
     },
     {
       "id": "ธ",
@@ -238,7 +238,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "flag",
-      "audioPath": "/audio/consonants/ธ.mp3"
+      "audioPath": "/audio/consonants/ธ_tho_thong.mp3"
     },
     {
       "id": "น",
@@ -248,7 +248,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "mouse",
-      "audioPath": "/audio/consonants/น.mp3"
+      "audioPath": "/audio/consonants/น_no_nu.mp3"
     },
     {
       "id": "บ",
@@ -258,7 +258,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "leaf",
-      "audioPath": "/audio/consonants/บ.mp3"
+      "audioPath": "/audio/consonants/บ_bo_baimai.mp3"
     },
     {
       "id": "ป",
@@ -268,7 +268,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "fish",
-      "audioPath": "/audio/consonants/ป.mp3"
+      "audioPath": "/audio/consonants/ป_po_pla.mp3"
     },
     {
       "id": "ผ",
@@ -278,7 +278,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "bee",
-      "audioPath": "/audio/consonants/ผ.mp3"
+      "audioPath": "/audio/consonants/ผ_pho_phueng.mp3"
     },
     {
       "id": "ฝ",
@@ -288,7 +288,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "lid",
-      "audioPath": "/audio/consonants/ฝ.mp3"
+      "audioPath": "/audio/consonants/ฝ_fo_fa.mp3"
     },
     {
       "id": "พ",
@@ -298,7 +298,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "pan",
-      "audioPath": "/audio/consonants/พ.mp3"
+      "audioPath": "/audio/consonants/พ_pho_phan.mp3"
     },
     {
       "id": "ฟ",
@@ -308,7 +308,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "teeth",
-      "audioPath": "/audio/consonants/ฟ.mp3"
+      "audioPath": "/audio/consonants/ฟ_fo_fan.mp3"
     },
     {
       "id": "ภ",
@@ -318,7 +318,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "junk",
-      "audioPath": "/audio/consonants/ภ.mp3"
+      "audioPath": "/audio/consonants/ภ_pho_samphao.mp3"
     },
     {
       "id": "ม",
@@ -328,7 +328,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "horse",
-      "audioPath": "/audio/consonants/ม.mp3"
+      "audioPath": "/audio/consonants/ม_mo_ma.mp3"
     },
     {
       "id": "ย",
@@ -338,7 +338,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "giant",
-      "audioPath": "/audio/consonants/ย.mp3"
+      "audioPath": "/audio/consonants/ย_yo_yak.mp3"
     },
     {
       "id": "ร",
@@ -348,7 +348,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "boat",
-      "audioPath": "/audio/consonants/ร.mp3"
+      "audioPath": "/audio/consonants/ร_ro_ruea.mp3"
     },
     {
       "id": "ฤ",
@@ -368,7 +368,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "monkey",
-      "audioPath": "/audio/consonants/ล.mp3"
+      "audioPath": "/audio/consonants/ล_lo_ling.mp3"
     },
     {
       "id": "ฦ",
@@ -388,7 +388,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "ring",
-      "audioPath": "/audio/consonants/ว.mp3"
+      "audioPath": "/audio/consonants/ว_wo_waen.mp3"
     },
     {
       "id": "ศ",
@@ -398,7 +398,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "pavilion",
-      "audioPath": "/audio/consonants/ศ.mp3"
+      "audioPath": "/audio/consonants/ศ_so_sala.mp3"
     },
     {
       "id": "ษ",
@@ -408,7 +408,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "hermit",
-      "audioPath": "/audio/consonants/ษ.mp3"
+      "audioPath": "/audio/consonants/ษ_so_rue-si.mp3"
     },
     {
       "id": "ส",
@@ -418,7 +418,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "tiger",
-      "audioPath": "/audio/consonants/ส.mp3"
+      "audioPath": "/audio/consonants/ส_so_suea.mp3"
     },
     {
       "id": "ห",
@@ -428,7 +428,7 @@
       "class": "high",
       "strokeCount": 2,
       "meaning": "chest",
-      "audioPath": "/audio/consonants/ห.mp3"
+      "audioPath": "/audio/consonants/ห_ho_hip.mp3"
     },
     {
       "id": "ฬ",
@@ -438,7 +438,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "kite",
-      "audioPath": "/audio/consonants/ฬ.mp3"
+      "audioPath": "/audio/consonants/ฬ_lo_chula.mp3"
     },
     {
       "id": "อ",
@@ -448,7 +448,7 @@
       "class": "mid",
       "strokeCount": 2,
       "meaning": "basin",
-      "audioPath": "/audio/consonants/อ.mp3"
+      "audioPath": "/audio/consonants/อ_o_ang.mp3"
     },
     {
       "id": "ฮ",
@@ -458,7 +458,7 @@
       "class": "low",
       "strokeCount": 2,
       "meaning": "owl",
-      "audioPath": "/audio/consonants/ฮ.mp3"
+      "audioPath": "/audio/consonants/ฮ_ho_nokhuk.mp3"
     }
   ],
   "vowels": [

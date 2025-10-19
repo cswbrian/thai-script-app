@@ -124,11 +124,13 @@
   - [x] 6.1 Create useAudio custom React hook with Howler.js integration
   - [x] 6.2 Implement text-to-speech fallback using Web Speech API
   - [x] 6.3 Create AudioControls component with Heroicons and Tailwind styling
-  - [ ] 6.4 Add audio preloading strategy with Howler.js sound sprites
-  - [ ] 6.5 Implement audio compression and optimization for mobile
-  - [ ] 6.6 Create audio settings component with volume control and mute
-  - [ ] 6.7 Add pronunciation comparison feature (user vs. correct)
-  - [ ] 6.8 Implement audio caching in Service Worker with Vite PWA plugin
+  - [x] 6.4 Acquire Thai consonant audio files (44 MP3 files with proper naming)
+  - [x] 6.5 Integrate audio files with character data and update thai-characters.json
+  - [ ] 6.6 Add audio preloading strategy with Howler.js sound sprites
+  - [ ] 6.7 Implement audio compression and optimization for mobile
+  - [ ] 6.8 Create audio settings component with volume control and mute
+  - [ ] 6.9 Add pronunciation comparison feature (user vs. correct)
+  - [ ] 6.10 Implement audio caching in Service Worker with Vite PWA plugin
 
 - [x] 7.0 Quiz and Assessment System
   - [x] 7.1 Create QuizInterface React component with Headless UI modals

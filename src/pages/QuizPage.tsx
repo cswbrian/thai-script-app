@@ -78,7 +78,7 @@ const QuizPage: React.FC = () => {
         {initialCharacter && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 max-w-sm mx-auto">
             <div className="flex items-center justify-center space-x-3">
-              <div className="text-xl font-bold text-gray-900 thai-font">
+              <div className="text-2xl font-bold text-gray-900 thai-character">
                 {initialCharacter.id}
               </div>
               <div>
