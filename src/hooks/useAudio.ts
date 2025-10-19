@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useRef, useState, useEffect } from 'react'
 import { Howl } from 'howler'
 import AudioManager, { generateAudioText, checkAudioFileExists } from '../utils/audio'
 import type { ThaiCharacter } from '../utils/characters'
@@ -25,6 +25,16 @@ export const useAudio = (): UseAudioReturn => {
   })
 
   const currentHowl = useRef<Howl | null>(null)
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (currentHowl.current) {
+        currentHowl.current.stop()
+        currentHowl.current = null
+      }
+    }
+  }, [])
 
   const playAudio = useCallback(async (audioPath: string, character?: ThaiCharacter): Promise<void> => {
     try {
@@ -71,6 +81,7 @@ export const useAudio = (): UseAudioReturn => {
         src: [audioPath],
         format: ['mp3', 'wav', 'ogg'],
         preload: true,
+        html5: false, // Use Web Audio API for better performance
         onload: () => {
           setState(prev => ({ ...prev, isLoading: false }))
         },
@@ -103,15 +114,15 @@ export const useAudio = (): UseAudioReturn => {
           setState(prev => ({ ...prev, isPlaying: true, error: null }))
         },
         onend: () => {
-          setState(prev => ({ ...prev, isPlaying: false }))
+          setState(prev => ({ ...prev, isPlaying: false, isLoading: false }))
           currentHowl.current = null
         },
         onstop: () => {
-          setState(prev => ({ ...prev, isPlaying: false }))
+          setState(prev => ({ ...prev, isPlaying: false, isLoading: false }))
           currentHowl.current = null
         },
         onpause: () => {
-          setState(prev => ({ ...prev, isPlaying: false }))
+          setState(prev => ({ ...prev, isPlaying: false, isLoading: false }))
         },
       })
 
@@ -135,7 +146,7 @@ export const useAudio = (): UseAudioReturn => {
       currentHowl.current.stop()
       currentHowl.current = null
     }
-    setState(prev => ({ ...prev, isPlaying: false }))
+    setState(prev => ({ ...prev, isPlaying: false, isLoading: false }))
   }, [])
 
   return {
