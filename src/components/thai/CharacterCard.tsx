@@ -5,13 +5,11 @@ import type { ThaiCharacter } from '../../utils/characters'
 interface CharacterCardProps {
   character: ThaiCharacter
   onClick: () => void
-  groupColor?: string
 }
 
 const CharacterCard: React.FC<CharacterCardProps> = ({
   character,
-  onClick,
-  groupColor = 'bg-blue-100'
+  onClick
 }) => {
 
   const handleClick = () => {
@@ -25,7 +23,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.1 }}
       className={`
-        relative ${groupColor} rounded-2xl border-2 transition-all duration-200 cursor-pointer
+        relative bg-white rounded-2xl border-2 transition-all duration-200 cursor-pointer
         hover:shadow-xl hover:border-blue-300 active:scale-95 touch-button
         border-gray-200 hover:border-gray-300 min-h-[80px]
       `}

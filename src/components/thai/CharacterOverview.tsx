@@ -49,7 +49,6 @@ const CharacterOverview: React.FC = () => {
                           key={character.id}
                           character={character}
                           onClick={() => handleCharacterClick(character)}
-                          groupColor={group.color}
                         />
                       ))}
                     </div>
@@ -83,7 +82,6 @@ const CharacterOverview: React.FC = () => {
                           key={character.id}
                           character={character}
                           onClick={() => handleCharacterClick(character)}
-                          groupColor={group.color}
                         />
                       ))}
                     </div>
@@ -117,7 +115,6 @@ const CharacterOverview: React.FC = () => {
                           key={character.id}
                           character={character}
                           onClick={() => handleCharacterClick(character)}
-                          groupColor={group.color}
                         />
                       ))}
                     </div>

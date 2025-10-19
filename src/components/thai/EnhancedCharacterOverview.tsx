@@ -287,7 +287,6 @@ const CharacterGroupSection: React.FC<CharacterGroupSectionProps> = ({
                 key={character.id}
                 character={character}
                 onClick={() => onCharacterClick(character)}
-                groupColor={group.color}
               />
             ))}
           </div>

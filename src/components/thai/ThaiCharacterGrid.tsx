@@ -66,7 +66,6 @@ const ThaiCharacterGrid: React.FC = () => {
                 key={character.id}
                 character={character}
                 onClick={() => handleCharacterClick(character)}
-                groupColor={currentGroup.color}
               />
             ))}
           </div>
